@@ -64,7 +64,7 @@ export class TimeRegisterComponent implements OnInit {
   }
 
   Cancel(request: CreateOrUpdateTimeTableRequest) {
-    request.employeeId = 40
+    request.employeeId = 1
     this.timeTableService.createOrUpdateTimeTable(request).subscribe();
     setTimeout(() => {
       location.reload();

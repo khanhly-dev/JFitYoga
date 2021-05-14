@@ -1683,6 +1683,22 @@ namespace GymManage.Migrations
                     b.HasIndex("PositionId");
 
                     b.ToTable("Employee");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Adress = "NaN",
+                            Born = new DateTime(2021, 5, 14, 22, 6, 28, 817, DateTimeKind.Local).AddTicks(4984),
+                            FromDate = new DateTime(2021, 5, 14, 22, 6, 28, 818, DateTimeKind.Local).AddTicks(4241),
+                            Name = "Trống",
+                            Password = "",
+                            PhoneNumber = "000",
+                            PositionId = 1,
+                            Salary = 0,
+                            Status = true,
+                            UserName = ""
+                        });
                 });
 
             modelBuilder.Entity("GymManage.EmployeePosition.EmployeePositionEntity", b =>
@@ -1707,6 +1723,16 @@ namespace GymManage.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EmployeePosition");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BaseSalary = 120,
+                            Bonus = 10,
+                            Description = "người giảng dạy tại các lớp học",
+                            Name = "Giáo viên"
+                        });
                 });
 
             modelBuilder.Entity("GymManage.MultiTenancy.Tenant", b =>

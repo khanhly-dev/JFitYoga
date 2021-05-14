@@ -43,9 +43,9 @@
                         <td>{{data.positionId | positionPipe: positionList}}</td>
                         <td>{{data.status | workStatusPipe  }}</td>
                         <td>
-                            <button nz-button nzType="primary" (click)="showModal(data.id)">Sửa</button>
+                            <button *ngIf="data.id != 1" nz-button nzType="primary" (click)="showModal(data.id)">Sửa</button>
                             &nbsp;
-                            <button nz-button nzType="primary" (click)="deleteEmployee(data.id)">Xóa</button>
+                            <button *ngIf="data.id != 1" nz-button nzType="primary" (click)="deleteEmployee(data.id)">Xóa</button>
                         </td>
                     </tr>
 

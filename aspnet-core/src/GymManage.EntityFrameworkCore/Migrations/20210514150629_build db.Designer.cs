@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymManage.Migrations
 {
     [DbContext(typeof(GymManageDbContext))]
-    [Migration("20210509083720_add cus in class")]
-    partial class addcusinclass
+    [Migration("20210514150629_build db")]
+    partial class builddb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1328,6 +1328,28 @@ namespace GymManage.Migrations
                     b.ToTable("AbpWebhookSubscriptions");
                 });
 
+            modelBuilder.Entity("GymManage.AppEntity.CustomerInTimeTable.CustomerInTimeTableEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeTableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("TimeTableId");
+
+                    b.ToTable("CustomerInTimeTable");
+                });
+
             modelBuilder.Entity("GymManage.AppEntity.SessionWork.SessionWorkEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -1563,8 +1585,8 @@ namespace GymManage.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
+                    b.Property<float>("Discount")
+                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -1572,11 +1594,11 @@ namespace GymManage.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OriginalPrice")
-                        .HasColumnType("int");
+                    b.Property<float>("OriginalPrice")
+                        .HasColumnType("real");
 
-                    b.Property<int>("TotalPrice")
-                        .HasColumnType("int");
+                    b.Property<float>("TotalPrice")
+                        .HasColumnType("real");
 
                     b.Property<string>("UserCreated")
                         .HasColumnType("nvarchar(max)");
@@ -1663,6 +1685,22 @@ namespace GymManage.Migrations
                     b.HasIndex("PositionId");
 
                     b.ToTable("Employee");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Adress = "NaN",
+                            Born = new DateTime(2021, 5, 14, 22, 6, 28, 817, DateTimeKind.Local).AddTicks(4984),
+                            FromDate = new DateTime(2021, 5, 14, 22, 6, 28, 818, DateTimeKind.Local).AddTicks(4241),
+                            Name = "Trống",
+                            Password = "",
+                            PhoneNumber = "000",
+                            PositionId = 1,
+                            Salary = 0,
+                            Status = true,
+                            UserName = ""
+                        });
                 });
 
             modelBuilder.Entity("GymManage.EmployeePosition.EmployeePositionEntity", b =>
@@ -1687,27 +1725,16 @@ namespace GymManage.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EmployeePosition");
-                });
 
-            modelBuilder.Entity("GymManage.Facitity.FacilityEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Facility");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BaseSalary = 120,
+                            Bonus = 10,
+                            Description = "người giảng dạy tại các lớp học",
+                            Name = "Giáo viên"
+                        });
                 });
 
             modelBuilder.Entity("GymManage.MultiTenancy.Tenant", b =>
@@ -1780,10 +1807,16 @@ namespace GymManage.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -1867,61 +1900,6 @@ namespace GymManage.Migrations
                     b.ToTable("ProductInBill");
                 });
 
-            modelBuilder.Entity("GymManage.ProductInPromotion.ProductInPromotionEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromotionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductCategoryId");
-
-                    b.HasIndex("PromotionId");
-
-                    b.ToTable("ProductInPromotion");
-                });
-
-            modelBuilder.Entity("GymManage.Promotion.PromotionEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<bool>("ApplyForAll")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("DiscoutAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DiscoutPercent")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FromDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Tittle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ToDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Promotion");
-                });
-
             modelBuilder.Entity("GymManage.Service.ServiceEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -1950,20 +1928,17 @@ namespace GymManage.Migrations
                     b.Property<int>("ClassId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Day")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FromDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Lesson")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SessionId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("ToDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("employeeId")
                         .HasColumnType("int");
@@ -2200,6 +2175,25 @@ namespace GymManage.Migrations
                     b.Navigation("WebhookEvent");
                 });
 
+            modelBuilder.Entity("GymManage.AppEntity.CustomerInTimeTable.CustomerInTimeTableEntity", b =>
+                {
+                    b.HasOne("GymManage.Customer.CustomerEntity", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GymManage.TimeTable.TimeTableEntity", "TimeTable")
+                        .WithMany()
+                        .HasForeignKey("TimeTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("TimeTable");
+                });
+
             modelBuilder.Entity("GymManage.Authorization.Roles.Role", b =>
                 {
                     b.HasOne("GymManage.Authorization.Users.User", "CreatorUser")
@@ -2333,25 +2327,6 @@ namespace GymManage.Migrations
                     b.Navigation("Bill");
 
                     b.Navigation("ProductCategory");
-                });
-
-            modelBuilder.Entity("GymManage.ProductInPromotion.ProductInPromotionEntity", b =>
-                {
-                    b.HasOne("GymManage.ProductCategory.ProductCategoryEntity", "ProductCategory")
-                        .WithMany()
-                        .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GymManage.Promotion.PromotionEntity", "Promotion")
-                        .WithMany()
-                        .HasForeignKey("PromotionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductCategory");
-
-                    b.Navigation("Promotion");
                 });
 
             modelBuilder.Entity("GymManage.TimeTable.TimeTableEntity", b =>

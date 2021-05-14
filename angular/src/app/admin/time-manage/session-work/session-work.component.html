@@ -32,8 +32,8 @@
                     <tr *ngFor="let data of table.data">
                         <td>{{data.id}}</td>
                         <td>{{data.name}}</td>
-                        <td>{{data.fromTime | date:'hh:mm:ss'}}</td>
-                        <td>{{data.toTime | date:'hh:mm:ss'}}</td>
+                        <td>{{data.fromTime | date:'HH:mm:ss'}}</td>
+                        <td>{{data.toTime | date:'HH:mm:ss'}}</td>
                         <td>
                             <button nz-button nzType="primary" (click)="showModal(data.id)">Sửa</button>
                             &nbsp;

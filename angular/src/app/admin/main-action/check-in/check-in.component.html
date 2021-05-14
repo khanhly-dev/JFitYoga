@@ -101,7 +101,7 @@
                                 <td>{{item.date | date: 'YYYY-MM-dd'}}</td>
                                 <td>
                                     <button nz-button nzType="primary" (click)="insertCustomerIntoClass(customerSelect.value,item.id)">Thêm</button> <br><br>
-                                    <button nz-button nzType="primary" >Chi tiết</button>
+                                    <button nz-button nzType="primary" (click)="showModal(item.id)">Chi tiết</button>
                                 </td>
                             </tr>
 
@@ -112,3 +112,28 @@
         </div>
     </div>
 </div>
+
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Danh sách học viên" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+        <nz-table nzTemplateMode #table [nzData]="cusInClassList">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Học viên</th>
+                    <th>Sđt</th>
+                    <th>Ca</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of table.data">
+                    <td>{{data.id}}</td>
+                    <td>{{data.customerName}}</td>
+                    <td>{{data.customerPhoneNumber}}</td>
+                    <td>{{data.sessionName}}</td>
+                </tr>
+
+            </tbody>
+        </nz-table>
+    </ng-container>
+  </nz-modal>

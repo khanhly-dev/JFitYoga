@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GymManage.Migrations
 {
-    public partial class createdatabase : Migration
+    public partial class builddb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -480,27 +480,14 @@ namespace GymManage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Facility",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Facility", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Option",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -520,25 +507,6 @@ namespace GymManage.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Promotion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Tittle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ToDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ApplyForAll = table.Column<bool>(type: "bit", nullable: false),
-                    DiscoutPercent = table.Column<int>(type: "int", nullable: false),
-                    DiscoutAmount = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Promotion", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -907,9 +875,9 @@ namespace GymManage.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserCreated = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OriginalPrice = table.Column<int>(type: "int", nullable: false),
-                    Discount = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<int>(type: "int", nullable: false),
+                    OriginalPrice = table.Column<float>(type: "real", nullable: false),
+                    Discount = table.Column<float>(type: "real", nullable: false),
+                    TotalPrice = table.Column<float>(type: "real", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -930,13 +898,15 @@ namespace GymManage.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Born = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Born = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Salary = table.Column<int>(type: "int", nullable: false),
-                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
-                    PositionId = table.Column<int>(type: "int", nullable: false)
+                    Salary = table.Column<int>(type: "int", nullable: true),
+                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: true),
+                    PositionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -946,7 +916,7 @@ namespace GymManage.Migrations
                         column: x => x.PositionId,
                         principalTable: "EmployeePosition",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1115,8 +1085,6 @@ namespace GymManage.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ToDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TrainingClassCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -1159,84 +1127,6 @@ namespace GymManage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductInPromotion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductCategoryId = table.Column<int>(type: "int", nullable: false),
-                    PromotionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductInPromotion", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductInPromotion_ProductCategory_ProductCategoryId",
-                        column: x => x.ProductCategoryId,
-                        principalTable: "ProductCategory",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductInPromotion_Promotion_PromotionId",
-                        column: x => x.PromotionId,
-                        principalTable: "Promotion",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CustomerInTrainingClass",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    TrainingClassId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerInTrainingClass", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CustomerInTrainingClass_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CustomerInTrainingClass_TrainingClass_TrainingClassId",
-                        column: x => x.TrainingClassId,
-                        principalTable: "TrainingClass",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EmployeeInTrainingClass",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    TrainingClassId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmployeeInTrainingClass", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EmployeeInTrainingClass_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeeInTrainingClass_TrainingClass_TrainingClassId",
-                        column: x => x.TrainingClassId,
-                        principalTable: "TrainingClass",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TimeTable",
                 columns: table => new
                 {
@@ -1245,9 +1135,9 @@ namespace GymManage.Migrations
                     ClassId = table.Column<int>(type: "int", nullable: false),
                     SessionId = table.Column<int>(type: "int", nullable: false),
                     employeeId = table.Column<int>(type: "int", nullable: false),
+                    Lesson = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Day = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ToDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1271,6 +1161,42 @@ namespace GymManage.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerInTimeTable",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    TimeTableId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerInTimeTable", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CustomerInTimeTable_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CustomerInTimeTable_TimeTable_TimeTableId",
+                        column: x => x.TimeTableId,
+                        principalTable: "TimeTable",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "EmployeePosition",
+                columns: new[] { "Id", "BaseSalary", "Bonus", "Description", "Name" },
+                values: new object[] { 1, 120, 10, "người giảng dạy tại các lớp học", "Giáo viên" });
+
+            migrationBuilder.InsertData(
+                table: "Employee",
+                columns: new[] { "Id", "Adress", "Born", "FromDate", "Name", "Password", "PhoneNumber", "PositionId", "Salary", "Status", "UserName" },
+                values: new object[] { 1, "NaN", new DateTime(2021, 5, 14, 22, 6, 28, 817, DateTimeKind.Local).AddTicks(4984), new DateTime(2021, 5, 14, 22, 6, 28, 818, DateTimeKind.Local).AddTicks(4241), "Trống", "", "000", 1, 0, true, "" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpAuditLogs_TenantId_ExecutionDuration",
@@ -1623,29 +1549,19 @@ namespace GymManage.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerInTrainingClass_CustomerId",
-                table: "CustomerInTrainingClass",
+                name: "IX_CustomerInTimeTable_CustomerId",
+                table: "CustomerInTimeTable",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerInTrainingClass_TrainingClassId",
-                table: "CustomerInTrainingClass",
-                column: "TrainingClassId");
+                name: "IX_CustomerInTimeTable_TimeTableId",
+                table: "CustomerInTimeTable",
+                column: "TimeTableId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_PositionId",
                 table: "Employee",
                 column: "PositionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeInTrainingClass_EmployeeId",
-                table: "EmployeeInTrainingClass",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeInTrainingClass_TrainingClassId",
-                table: "EmployeeInTrainingClass",
-                column: "TrainingClassId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductCategory_OptionId",
@@ -1671,16 +1587,6 @@ namespace GymManage.Migrations
                 name: "IX_ProductInBill_ProductCategoryId",
                 table: "ProductInBill",
                 column: "ProductCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductInPromotion_ProductCategoryId",
-                table: "ProductInPromotion",
-                column: "ProductCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductInPromotion_PromotionId",
-                table: "ProductInPromotion",
-                column: "PromotionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TimeTable_ClassId",
@@ -1792,22 +1698,10 @@ namespace GymManage.Migrations
                 name: "AbpWebhookSubscriptions");
 
             migrationBuilder.DropTable(
-                name: "CustomerInTrainingClass");
-
-            migrationBuilder.DropTable(
-                name: "EmployeeInTrainingClass");
-
-            migrationBuilder.DropTable(
-                name: "Facility");
+                name: "CustomerInTimeTable");
 
             migrationBuilder.DropTable(
                 name: "ProductInBill");
-
-            migrationBuilder.DropTable(
-                name: "ProductInPromotion");
-
-            migrationBuilder.DropTable(
-                name: "TimeTable");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicEntityProperties");
@@ -1825,22 +1719,13 @@ namespace GymManage.Migrations
                 name: "AbpWebhookEvents");
 
             migrationBuilder.DropTable(
+                name: "TimeTable");
+
+            migrationBuilder.DropTable(
                 name: "Bill");
 
             migrationBuilder.DropTable(
                 name: "ProductCategory");
-
-            migrationBuilder.DropTable(
-                name: "Promotion");
-
-            migrationBuilder.DropTable(
-                name: "Employee");
-
-            migrationBuilder.DropTable(
-                name: "SessionWork");
-
-            migrationBuilder.DropTable(
-                name: "TrainingClass");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicProperties");
@@ -1850,6 +1735,15 @@ namespace GymManage.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpUsers");
+
+            migrationBuilder.DropTable(
+                name: "Employee");
+
+            migrationBuilder.DropTable(
+                name: "SessionWork");
+
+            migrationBuilder.DropTable(
+                name: "TrainingClass");
 
             migrationBuilder.DropTable(
                 name: "Customer");

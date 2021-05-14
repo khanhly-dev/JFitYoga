@@ -20,6 +20,8 @@ using GymManage.Service;
 using GymManage.TimeTable;
 using GymManage.AppEntity.SessionWork;
 using GymManage.AppEntity.CustomerInTimeTable;
+using GymManage.EntityFrameworkCore.Seed;
+using System;
 
 namespace GymManage.EntityFrameworkCore
 {
@@ -44,6 +46,20 @@ namespace GymManage.EntityFrameworkCore
         public GymManageDbContext(DbContextOptions<GymManageDbContext> options)
             : base(options)
         {
+            
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<EmployeePositionEntity>().HasData(
+              new EmployeePositionEntity() { Id = 1, Name = "Giáo viên", Description = "người giảng dạy tại các lớp học", BaseSalary = 120, Bonus = 10 }
+              );
+
+            modelBuilder.Entity<EmployeeEntity>().HasData(
+                new EmployeeEntity() { Id = 1, Name = "Trống", Born = DateTime.Now, Adress = "NaN", PhoneNumber = "000", Salary = 0, FromDate = DateTime.Now, Status = true, PositionId = 1, Password = "", UserName = "" }
+                );
         }
     }
 }

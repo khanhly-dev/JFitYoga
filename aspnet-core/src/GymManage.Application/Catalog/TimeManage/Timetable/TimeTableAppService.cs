@@ -118,6 +118,8 @@ namespace GymManage.Catalog.TimeManage.Timetable
 
         public async Task<List<TimeTableViewModel>> GetTimeTableByDate(DateTime date)
         {
+            DateTime dateToCompare = DateTime.Now;
+
             var user = _userManager.FindByIdAsync(_session.UserId.ToString());
             var userName = user.Result.UserName;
 
@@ -132,7 +134,7 @@ namespace GymManage.Catalog.TimeManage.Timetable
                         join e in employeeQuery on t.employeeId equals e.Id
                         select new { t, s, c, e };
 
-            query = query.Where(x => x.t.Date == date );
+            query = query.Where(x => x.t.Date == date && dateToCompare.Hour < x.s.FromTime.Hour);
 
 
             var data = await query.Select(x => new TimeTableViewModel

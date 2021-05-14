@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateOrUpdateCustomerInTimeTableRequest, CustomerInTImeTableServiceProxy, CustomerServiceProxy, CustomerViewModel, ProductInBillServiceProxy, ProductInBillViewModel, TimeTableServiceProxy, TimeTableViewModel } from '@shared/service-proxies/service-proxies';
+import { CreateOrUpdateCustomerInTimeTableRequest, CustomerInTImeTableServiceProxy, CustomerInTimeTableViewModel, CustomerServiceProxy, CustomerViewModel, ProductInBillServiceProxy, ProductInBillViewModel, TimeTableServiceProxy, TimeTableViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
 
 @Component({
@@ -13,6 +13,8 @@ export class CheckInComponent implements OnInit {
   timeTableList: TimeTableViewModel[] = [];
   productInBillList: ProductInBillViewModel[] = [];
   binding3  :string
+  isVisible = false;
+  cusInClassList : CustomerInTimeTableViewModel[] = []
   
   constructor(private customerService: CustomerServiceProxy,
     private productInBillService: ProductInBillServiceProxy,
@@ -22,6 +24,23 @@ export class CheckInComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCustomer('');
     this.getTimeTableByDate();
+  }
+  getStudentByClassId(id : number)
+  {
+    this.customerInClassService.getCustomerByTimeTableId(id).subscribe(x => this.cusInClassList = x);
+  }
+
+  showModal(id : number): void {
+    this.getStudentByClassId(id);
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
   getAllCustomer(keyword: string) {
@@ -65,7 +84,6 @@ export class CheckInComponent implements OnInit {
   getTimeTableByDate()
   {
     this.timeTableService.getTimeTableByDate(moment(moment().format('YYYY MM DD'))).subscribe(x => this.timeTableList = x)
-    console.log(this.timeTableList)
   }
 
   insertCustomerIntoClass(cusId : number, classId : number)
