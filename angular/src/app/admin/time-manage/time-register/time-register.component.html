@@ -1,0 +1,57 @@
+<br>
+<div nz-row>
+    <h3>Lịch học</h3>
+</div>
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <nz-card nzTitle="Bảng lịch học" [nzExtra]="extraTemplate">
+
+            <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                <input type="text" #search nz-input placeholder="từ khóa....." />
+            </nz-input-group>
+
+            <ng-template #suffixIconButton>
+                <button nz-button nzType="primary" nzSearch (click)="getAllTimeTable(search.value, undefined, undefined)">
+                    <i class="fas fa-search"></i>
+                </button>
+            </ng-template>
+
+            <br><br>
+
+            <nz-table #table [nzData]="dayList">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ca</th>
+                        <th *ngFor="let item of dayList" #dayValue>{{item}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of sessionList">
+                        <td>{{data.id}}</td>
+                        <td>{{data.name}}</td>
+                        <td *ngFor="let item of dayList">
+                            <div *ngFor="let childItem of timeTableList">
+                        <td *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
+                            <br> GV: {{childItem.employeeName}}
+                            <br> Bài: {{childItem.lesson}}
+                            <button *ngIf="childItem.employeeName == 'Trống'" nz-button [nzSize]="size" nzType="default" (click)="createOrUpdateTimeTable(childItem)">đăng kí</button>
+                            <button *ngIf="childItem.employeeUserName == childItem.curentUserName" nz-button [nzSize]="size" nzType="default" (click)="Cancel(childItem)">hủy</button>
+                            <hr>
+                        </td>
+    </div>
+    </td>
+    </tr>
+
+    </tbody>
+    </nz-table>
+
+    </nz-card>
+    <ng-template #extraTemplate>
+       
+    </ng-template>
+</div>
+</div>
+
+
+
