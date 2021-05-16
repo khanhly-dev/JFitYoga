@@ -22,11 +22,13 @@ export class HomeComponent extends AppComponentBase implements OnInit {
   customerList: CustomerViewModel[] = [];
   customerListShow: CustomerViewModel[] = [];
   productInBillList: ProductInBillViewModel[] = [];
+  onlineShoping : ProductInBillViewModel[] = [];
+  onlinePercent : number;
   yogaBillListFilter: ProductInBillViewModel[] = [];
   dacneBillListFilter: ProductInBillViewModel[] = [];
   constructor(injector: Injector, 
     private productInBillService: ProductInBillServiceProxy,
-    private customerService: CustomerServiceProxy) {
+    private customerService: CustomerServiceProxy,) {
     super(injector);
 
   }
@@ -55,6 +57,12 @@ export class HomeComponent extends AppComponentBase implements OnInit {
   getAllProductInBill(keyword: string) {
     this.productInBillService.getAllProductInBill(keyword).subscribe(x => {
       this.productInBillList = x
+      setTimeout(() => {
+        this.onlineShoping = this.productInBillList.filter(x => x.note == 'Khách mua hàng online');
+        this.onlinePercent = (this.onlineShoping.length / this.productInBillList.length)*100
+        console.log(this.onlinePercent)
+      }, 1000);
+     
     });
   }
   getYogaRevenue() {
@@ -64,8 +72,8 @@ export class HomeComponent extends AppComponentBase implements OnInit {
       this.yogaRevenueToday = 0
     }
     else {
-      for (let item of this.yogaBillListFilter) {
-        this.yogaRevenueToday = 0
+      this.yogaRevenueToday = 0
+      for (let item of this.yogaBillListFilter) { 
         this.yogaRevenueToday += item.totalPrice
       }
     }
@@ -85,8 +93,8 @@ export class HomeComponent extends AppComponentBase implements OnInit {
       this.danceRevenueToday = 0
     }
     else {
+      this.danceRevenueToday = 0
       for (let item of this.dacneBillListFilter) {
-        this.danceRevenueToday = 0
         this.danceRevenueToday += item.totalPrice
       }
     }
@@ -190,15 +198,15 @@ export class HomeComponent extends AppComponentBase implements OnInit {
   public chartType2: string = 'doughnut';
 
   public chartDatasets2: Array<any> = [
-    { data: [300, 50, 100, 40, 120], label: 'My First dataset' }
+    { data: [20, 40, 10, 30], label: 'My First dataset' }
   ];
 
-  public chartLabels2: Array<any> = ['Red', 'Green', 'Yellow', 'Grey', 'Dark Grey'];
+  public chartLabels2: Array<any> = ['Google', 'Facebook', 'Youtube', 'Website'];
 
   public chartColors2: Array<any> = [
     {
-      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
-      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774'],
+      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1'],
+      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5'],
       borderWidth: 2,
     }
   ];

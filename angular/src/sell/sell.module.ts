@@ -24,6 +24,8 @@ import { PageComponent } from './page/page.component';
 import { SellComponent } from './sell.component';
 import { FooterComponent } from './footer/footer.component';
 import { TimetableOfCustomerComponent } from './timetable-of-customer/timetable-of-customer.component';
+import { YogaIntroComponent } from './yoga-intro/yoga-intro.component';
+import { DanceIntroComponent } from './dance-intro/dance-intro.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { TimetableOfCustomerComponent } from './timetable-of-customer/timetable-
     PageComponent,
     SellComponent,
     FooterComponent,
-    TimetableOfCustomerComponent
+    TimetableOfCustomerComponent,
+    YogaIntroComponent,
+    DanceIntroComponent
   ],
   imports: [
     CommonModule,
