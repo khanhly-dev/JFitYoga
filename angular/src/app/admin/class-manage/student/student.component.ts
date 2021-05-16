@@ -8,6 +8,7 @@ import * as moment from 'moment';
 })
 export class StudentComponent implements OnInit {
 
+  totalStudent : number;
   collapse = 'Bộ lọc';
   cusInClassList : CustomerInTimeTableViewModel[] = []
   timeTableList: TimeTableViewModel[] = [];
@@ -26,6 +27,10 @@ export class StudentComponent implements OnInit {
   getStudentByClassId(id : number)
   {
     this.customerInClassService.getCustomerByTimeTableId(id).subscribe(x => this.cusInClassList = x);
+    setTimeout(() => {
+      this.totalStudent = this.cusInClassList.length;
+    }, 500);
+   
   }
 
   getAllTimeTable(keyword:string, fromDate : string, toDate : string) {
@@ -55,6 +60,9 @@ export class StudentComponent implements OnInit {
   deleteStudentFromClass(id : number)
   {
     this.customerInClassService.deleteCustomeInTimeTable(id).subscribe();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 500);
+    
   }
 }

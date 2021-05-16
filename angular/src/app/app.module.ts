@@ -38,7 +38,12 @@ import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
-
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 @NgModule({
   declarations: [
@@ -84,7 +89,13 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     ServiceProxyModule,
     SharedModule,
     NgxPaginationModule,
-    NzProgressModule
+    NzProgressModule,
+    MDBBootstrapModule.forRoot(),
+    NzCardModule,
+    NzGridModule,
+    NzButtonModule,
+    NzTableModule,
+    NzListModule
   ],
   providers: [
     

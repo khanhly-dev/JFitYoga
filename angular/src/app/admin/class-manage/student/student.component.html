@@ -68,7 +68,7 @@
         </nz-card>
     </div>
     <div nz-col nzSpan="18">
-        <nz-card nzTitle="Danh sách học viên">
+        <nz-card nzTitle="Danh sách học viên (Sĩ số: {{totalStudent}})">
 
             <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
                 <input type="text" #search nz-input placeholder="từ khóa....." />
@@ -89,6 +89,7 @@
                         <th>Học viên</th>
                         <th>Sđt</th>
                         <th>Ca</th>
+                        <th>Trạng thái</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -98,6 +99,8 @@
                         <td>{{data.customerName}}</td>
                         <td>{{data.customerPhoneNumber}}</td>
                         <td>{{data.sessionName}}</td>
+                        <td *ngIf="data.active == true">Đã check in</td>
+                        <td *ngIf="data.active == false">Chưa check in</td>
                         <td>
                             <button nz-button nzType="primary" (click)="deleteStudentFromClass(data.id)">Xóa</button>
                         </td>

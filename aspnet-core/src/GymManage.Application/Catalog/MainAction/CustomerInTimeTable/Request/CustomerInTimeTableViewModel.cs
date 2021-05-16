@@ -19,5 +19,6 @@ namespace GymManage.Catalog.MainAction.CustomerInTimeTable.Request
         public DateTime Date { get; set; }
         public int SessionId { get; set; }
         public string SessionName { get; set; }
+        public bool Active { get; set; }
     }
 }

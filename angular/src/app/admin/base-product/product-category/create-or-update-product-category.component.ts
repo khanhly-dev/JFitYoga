@@ -94,7 +94,7 @@ export class CreateOrUpdateProductCategoryComponent implements OnInit {
       && x.optionId == this.createOrUpdateProductCategoryForm.value.optionId
       && x.serviceId == this.createOrUpdateProductCategoryForm.value.serviceId)
 
-    if (dataChecked.length > 0) {
+    if (dataChecked.length > 0 && this.productEdited == undefined) {
       alert('Sản phẩm này đã tồn tại')
     }
     else {

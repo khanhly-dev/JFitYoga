@@ -87,6 +87,7 @@ export class StudentRegisterComponent implements OnInit {
     var request: CreateOrUpdateCustomerInTimeTableRequest = new CreateOrUpdateCustomerInTimeTableRequest();
 
     request.timeTableId = timeTableId;
+    request.active = false;
 
     var dataChecked: CustomerInTimeTableViewModel[]
     dataChecked = this.cusInClassList.filter(x => x.customerId == Number(sessionStorage.getItem('loginAcountId')) 

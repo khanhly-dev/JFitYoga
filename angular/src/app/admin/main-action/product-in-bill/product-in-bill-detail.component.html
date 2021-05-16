@@ -15,13 +15,13 @@
                             {{productInBillBinding.dateCreated | date:'YYYY-MM-dd'}}
                             <br>
                             <label for="">Tổng tiền:</label>
-                            {{productInBillBinding.originalPrice}}
+                            {{productInBillBinding.originalPrice | currency:'VND'}}
                             <br>
                             <label for="">Giảm giá:</label>
                             {{productInBillBinding.discount}}
                             <br>
                             <label for="">Thành tiền:</label>   
-                            {{productInBillBinding.totalPrice}}
+                            {{productInBillBinding.totalPrice | currency:'VND'}}
                             <br> 
                             <label for="">Ghi chú:</label>      
                             {{productInBillBinding.note}}

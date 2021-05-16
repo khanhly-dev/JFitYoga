@@ -5419,6 +5419,7 @@ export class CreateOrUpdateCustomerInTimeTableRequest implements ICreateOrUpdate
     id: number | undefined;
     customerId: number;
     timeTableId: number;
+    active: boolean;
 
     constructor(data?: ICreateOrUpdateCustomerInTimeTableRequest) {
         if (data) {
@@ -5434,6 +5435,7 @@ export class CreateOrUpdateCustomerInTimeTableRequest implements ICreateOrUpdate
             this.id = _data["id"];
             this.customerId = _data["customerId"];
             this.timeTableId = _data["timeTableId"];
+            this.active = _data["active"];
         }
     }
 
@@ -5449,6 +5451,7 @@ export class CreateOrUpdateCustomerInTimeTableRequest implements ICreateOrUpdate
         data["id"] = this.id;
         data["customerId"] = this.customerId;
         data["timeTableId"] = this.timeTableId;
+        data["active"] = this.active;
         return data; 
     }
 
@@ -5464,6 +5467,7 @@ export interface ICreateOrUpdateCustomerInTimeTableRequest {
     id: number | undefined;
     customerId: number;
     timeTableId: number;
+    active: boolean;
 }
 
 export class CustomerInTimeTableViewModel implements ICustomerInTimeTableViewModel {
@@ -5478,6 +5482,7 @@ export class CustomerInTimeTableViewModel implements ICustomerInTimeTableViewMod
     date: moment.Moment;
     sessionId: number;
     sessionName: string | undefined;
+    active: boolean;
 
     constructor(data?: ICustomerInTimeTableViewModel) {
         if (data) {
@@ -5501,6 +5506,7 @@ export class CustomerInTimeTableViewModel implements ICustomerInTimeTableViewMod
             this.date = _data["date"] ? moment(_data["date"].toString()) : <any>undefined;
             this.sessionId = _data["sessionId"];
             this.sessionName = _data["sessionName"];
+            this.active = _data["active"];
         }
     }
 
@@ -5524,6 +5530,7 @@ export class CustomerInTimeTableViewModel implements ICustomerInTimeTableViewMod
         data["date"] = this.date ? this.date.toISOString() : <any>undefined;
         data["sessionId"] = this.sessionId;
         data["sessionName"] = this.sessionName;
+        data["active"] = this.active;
         return data; 
     }
 
@@ -5547,6 +5554,7 @@ export interface ICustomerInTimeTableViewModel {
     date: moment.Moment;
     sessionId: number;
     sessionName: string | undefined;
+    active: boolean;
 }
 
 export class CreateOrUpdateEmployeeRequest implements ICreateOrUpdateEmployeeRequest {

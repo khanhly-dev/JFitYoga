@@ -40,7 +40,7 @@
                                 <td>{{item.name}}</td>
                                 <td>{{item.phoneNumber}}</td>
                                 <td>
-                                    <button nz-button nzType="primary" (click)="showModal(item)">Chi tiết</button>
+                                    <button nz-button nzType="primary" >Chi tiết</button>
                                 </td>
                             </tr>
 
@@ -79,7 +79,7 @@
     </div>
     <div nz-col nzSpan="8">
         <div style="padding:30px;">
-            <nz-card [nzBordered]="false" nzTitle="Danh sách lớp">
+            <nz-card [nzBordered]="false" nzTitle="Danh sách lớp (Sĩ số: {{totalStudent}})">
                 <div>
                     <nz-table nzTemplateMode #timetableTable [nzData]="timeTableList">
                         <thead>
@@ -122,6 +122,7 @@
                     <th>ID</th>
                     <th>Học viên</th>
                     <th>Sđt</th>
+                    <th>Trạng thái</th>
                     <th>Ca</th>
                 </tr>
             </thead>
@@ -130,6 +131,8 @@
                     <td>{{data.id}}</td>
                     <td>{{data.customerName}}</td>
                     <td>{{data.customerPhoneNumber}}</td>
+                    <td *ngIf="data.active == true">Đã check in</td>
+                    <td *ngIf="data.active == false">Chưa check in</td>
                     <td>{{data.sessionName}}</td>
                 </tr>
 

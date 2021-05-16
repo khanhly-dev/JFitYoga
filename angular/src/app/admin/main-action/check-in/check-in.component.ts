@@ -8,29 +8,39 @@ import * as moment from 'moment';
 })
 export class CheckInComponent implements OnInit {
 
+  totalStudent: number;
   customerList: CustomerViewModel[] = [];
   customerFullList: CustomerViewModel[] = [];
   timeTableList: TimeTableViewModel[] = [];
   productInBillList: ProductInBillViewModel[] = [];
-  binding3  :string
+  binding3: string
   isVisible = false;
-  cusInClassList : CustomerInTimeTableViewModel[] = []
-  
+  cusInClassList: CustomerInTimeTableViewModel[] = []
+  allStudentList: CustomerInTimeTableViewModel[] = []
+
   constructor(private customerService: CustomerServiceProxy,
     private productInBillService: ProductInBillServiceProxy,
-    private customerInClassService : CustomerInTImeTableServiceProxy,
+    private customerInClassService: CustomerInTImeTableServiceProxy,
     private timeTableService: TimeTableServiceProxy,) { }
 
   ngOnInit(): void {
     this.getAllCustomer('');
     this.getTimeTableByDate();
-  }
-  getStudentByClassId(id : number)
-  {
-    this.customerInClassService.getCustomerByTimeTableId(id).subscribe(x => this.cusInClassList = x);
+    this.getAllStudent();
   }
 
-  showModal(id : number): void {
+  getAllStudent() {
+    this.customerInClassService.getAllCustomerInTimeTable('').subscribe(x => this.allStudentList = x)
+  }
+
+  getStudentByClassId(id: number) {
+    this.customerInClassService.getCustomerByTimeTableId(id).subscribe(x => this.cusInClassList = x);
+    setTimeout(() => {
+      this.totalStudent = this.cusInClassList.length
+    }, 500);
+  }
+
+  showModal(id: number): void {
     this.getStudentByClassId(id);
     this.isVisible = true;
   }
@@ -46,53 +56,66 @@ export class CheckInComponent implements OnInit {
   getAllCustomer(keyword: string) {
     this.customerService.getAllCustomer(keyword).subscribe(x => this.customerFullList = x);
   }
-  
-  getCustomerById(id:number)
-  {
+
+  getCustomerById(id: number) {
     this.customerService.getCustomerById(id).subscribe(x => this.customerList = x)
   }
 
-  getProductInBillByCustomerId(customerId : number)
-  {
+  getProductInBillByCustomerId(customerId: number) {
     this.productInBillService.getProductInBillByCustomerId(customerId).subscribe(x => this.productInBillList = x)
   }
 
-  getAllTimeTable(keyword:string, fromDate : string, toDate : string) {
+  getAllTimeTable(keyword: string, fromDate: string, toDate: string) {
     var fromDateConvert
     var toDateConvert
-    if(fromDate != undefined)
-    {
+    if (fromDate != undefined) {
       fromDateConvert = moment(fromDate)
     }
-    else
-    {
+    else {
       fromDateConvert = undefined
     }
 
-    if(fromDate != undefined)
-    {
+    if (fromDate != undefined) {
       toDateConvert = moment(toDate)
     }
-    else
-    {
+    else {
       toDateConvert = undefined
     }
-    
+
     this.timeTableService.getAllTimeTable(keyword, fromDateConvert, toDateConvert).subscribe(x => this.timeTableList = x);
   }
 
-  getTimeTableByDate()
-  {
+  getTimeTableByDate() {
     this.timeTableService.getTimeTableByDate(moment(moment().format('YYYY MM DD'))).subscribe(x => this.timeTableList = x)
   }
 
-  insertCustomerIntoClass(cusId : number, classId : number)
-  {
-    const date = moment();
+  insertCustomerIntoClass(cusId: number, classId: number) {
+
     var request = new CreateOrUpdateCustomerInTimeTableRequest();
-    request.customerId = cusId;
-    request.timeTableId = classId,
-    this.customerInClassService.createOrUpdateCustomerInTimeTable(request).subscribe();
-    alert('Đã thêm học viên vào lớp học thành công')
+
+    var dataChecked: CustomerInTimeTableViewModel
+    dataChecked = this.allStudentList.find(x => x.customerId == cusId
+      && x.timeTableId == classId);
+
+    if (dataChecked != undefined && dataChecked.active == true) {
+      alert('Bạn đã thêm người này vào lớp này')
+    }
+    else if (dataChecked != undefined && dataChecked.active == false) {
+      request.id = dataChecked.id
+      request.active = true
+      request.customerId = cusId;
+      request.timeTableId = classId;
+      this.customerInClassService.createOrUpdateCustomerInTimeTable(request).subscribe();
+      alert('Đã check in vào lớp học thành công')
+    }
+    else if(dataChecked == undefined)
+    {
+      request.customerId = cusId;
+      request.timeTableId = classId;
+      request.active = true;
+      this.customerInClassService.createOrUpdateCustomerInTimeTable(request).subscribe();
+      alert('Đã Thêm vào lớp học thành công')
+    }
+
   }
 }

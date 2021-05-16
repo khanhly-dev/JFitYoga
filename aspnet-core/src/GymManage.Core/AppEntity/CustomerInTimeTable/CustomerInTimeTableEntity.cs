@@ -20,5 +20,7 @@ namespace GymManage.AppEntity.CustomerInTimeTable
         [ForeignKey(nameof(TimeTableId))]
         public TimeTableEntity TimeTable { get; set; }
         public int TimeTableId { get; set; }
+
+        public bool Active { get; set; }
     }
 }

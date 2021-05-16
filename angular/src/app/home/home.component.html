@@ -1,296 +1,206 @@
-﻿﻿<div [@routerTransition]>
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <h1>{{ "HomePage" | localize }}</h1>
-          </div>
-        </div>
+﻿﻿<div nz-row>
+
+
+  <div nz-col nzSpan="12">
+    <div nz-row>
+      <div nz-col nzSpan="12" style="padding: 10px;">
+        <mdb-card style="height: 200px;">
+          <mdb-card-body>
+            <mdb-card-title>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDMZsbKslMr1MQ1cZ4tOAY793NEM5dlcjpXGzIcxM1pY6ey7xEtifrdoWRJU2_MzDDbA&usqp=CAU"
+                class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+              <p style="display: inline;">Doanh thu ngày/Yoga</p>
+            </mdb-card-title>
+            <mdb-card-text>
+              <hr>
+              <div nz-row>
+                <div nz-col nzSpan="8">
+                  <img src="https://images.all-free-download.com/images/graphiclarge/yoga_logo_6825358.jpg"
+                    class="img-thumbnail" style="width: 80px; border: none; box-shadow: none;" alt="...">
+                </div>
+                <div nz-col nzSpan="14">
+                  <br>
+                  <h5>{{yogaRevenueToday | currency:'VND':'VND '}}</h5>
+                </div>
+                <div nz-col nzSpan="2">
+                  <button nz-button nzType="text" size="small" (click)="getYogaRevenue()"><i
+                      class="fas fa-eye"></i></button>
+                </div>
+              </div>
+              <div>
+                <nz-progress [nzPercent]="yogaPercent" [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"
+                  nzStatus="active"></nz-progress>
+              </div>
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
       </div>
-    </section>
-    <section class="content px-2">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="alert alert-info alert-dismissible">
-              <h6><i class="icon fa fa-info"></i> This is a sample Dashboard which doesn't show any server side data.
-                However, you can develop your own dashboard inspired by this one and its source code.</h6>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>8.2k+</h3>
-                <p>Stargazers</p>
+      <div nz-col nzSpan="12" style="padding: 10px;">
+        <mdb-card style="height: 200px;">
+          <mdb-card-body>
+            <mdb-card-title>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDMZsbKslMr1MQ1cZ4tOAY793NEM5dlcjpXGzIcxM1pY6ey7xEtifrdoWRJU2_MzDDbA&usqp=CAU"
+                class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+              <p style="display: inline;">Doanh thu ngày/Dance</p>
+            </mdb-card-title>
+
+            <mdb-card-text>
+              <hr>
+              <div nz-row>
+                <div nz-col nzSpan="8">
+                  <img
+                    src="https://thumbs.dreamstime.com/b/dance-logo-silhouette-active-people-dancing-logo-dance-classes-healthy-generic-activity-simple-icon-websites-info-168550285.jpg"
+                    class="img-thumbnail" style="width: 130px; border: none; box-shadow: none;" alt="...">
+                </div>
+                <div nz-col nzSpan="14">
+                  <br>
+                  <h5>{{danceRevenueToday | currency:'VND':'VND '}}</h5>
+                </div>
+                <div nz-col nzSpan="2">
+                  <button nz-button nzType="text" size="small" (click)="getDanceRevenue()"><i
+                      class="fas fa-eye"></i></button>
+                </div>
               </div>
-              <div class="icon">
-                <i class="fas fa-star"></i>
+              <div>
+                <nz-progress [nzPercent]="dancePercent" [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"
+                  nzStatus="active"></nz-progress>
               </div>
-              <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/stargazers"
-                class="small-box-footer"
-                target="_blank">
-                More info
-                <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>140+</h3>
-                <p>Contributors</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/graphs/contributors"
-                class="small-box-footer"
-                target="_blank">
-                More info
-                <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>1.6k+</h3>
-                <p>Used / Dependents</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-tools"></i>
-              </div>
-              <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/dependents"
-                class="small-box-footer"
-                target="_blank">
-                More info
-                <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-primary">
-              <div class="inner">
-                <h3>3.1k+</h3>
-                <p>Forks</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-code"></i>
-              </div>
-              <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/members"
-                class="small-box-footer"
-                target="_blank">
-                More info
-                <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-primary elevation-1">
-                <i class="fas fa-plus-circle"></i>
-              </span>
-              <div class="info-box-content">
-                <span class="info-box-text">Commits</span>
-                <span class="info-box-number">
-                  6,350+
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
-              <div class="info-box-content">
-                <span class="info-box-text">Issues</span>
-                <span class="info-box-number">
-                  170+
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="clearfix hidden-md-up"></div>
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-info elevation-1">
-                <i class="fas fa-tag"></i>
-              </span>
-              <div class="info-box-content">
-                <span class="info-box-text">Releases</span>
-                <span class="info-box-number">
-                  200+
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1">
-                <i class="fas fa-eye"></i>
-              </span>
-              <div class="info-box-content">
-                <span class="info-box-text">Watching by</span>
-                <span class="info-box-number">
-                  810+
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Open Issues</h3>
-              </div>
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead class="bg-light">
-                    <tr>
-                      <th>Id</th>
-                      <th class="w-25">Title</th>
-                      <th class="w-25">Labels</th>
-                      <th>Date</th>
-                      <th>Opened by</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5452"
-                          target="_blank">
-                          5452
-                        </a>
-                      </td>
-                      <td>Angular UI migration to AdminLTE 3</td>
-                      <td>
-                        <span class="badge badge-secondary mx-1">
-                          module-zero-core-template
-                        </span>
-                        <span class="badge badge-primary mx-1">
-                          feature
-                        </span>
-                      </td>
-                      <td>11 days ago</td>
-                      <td>iyilm4z</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5391"
-                          target="_blank">
-                          5391
-                        </a>
-                      </td>
-                      <td>
-                        AbpCacheBase should lock the same object for sync and
-                        async
-                      </td>
-                      <td>
-                        <span class="badge badge-danger mx-1">
-                          bug
-                        </span>
-                        <span class="badge badge-success mx-1">
-                          pull request candidate
-                        </span>
-                      </td>
-                      <td>26 days ago</td>
-                      <td>acjh</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5390"
-                          target="_blank">
-                          5390
-                        </a>
-                      </td>
-                      <td>AbpCache sliding/absolute expire time</td>
-                      <td>
-                        <span class="badge badge-warning mx-1">
-                          breaking-change
-                        </span>
-                        <span class="badge badge-info mx-1">enhancement</span>
-                      </td>
-                      <td>27 days ago</td>
-                      <td>ryancyq</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Closed Pull Requests</h3>
-              </div>
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead class="bg-light">
-                    <tr>
-                      <th>Id</th>
-                      <th class="w-25">Title</th>
-                      <th class="w-25">Milestone</th>
-                      <th>Date</th>
-                      <th>Made by</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/5430"
-                          target="_blank">
-                          5430
-                        </a>
-                      </td>
-                      <td>
-                        Added Dynamic-Parameter-System doc to documentation menu
-                      </td>
-                      <td>v5.6</td>
-                      <td>18 days ago</td>
-                      <td>maliming</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/5362"
-                          target="_blank">
-                          5362
-                        </a>
-                      </td>
-                      <td>
-                        Dynamic Parameter Module
-                      </td>
-                      <td>v5.4</td>
-                      <td>25 days ago</td>
-                      <td>demirmusa</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/4924"
-                          target="_blank">
-                          4924
-                        </a>
-                      </td>
-                      <td>
-                        ASP.NET Core 3.0 Upgrade
-                      </td>
-                      <td>v5.0</td>
-                      <td>Oct 15</td>
-                      <td>ismcagdas</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
       </div>
-    </section>
+    </div>
+
+    <div nz-row>
+      <div nz-col nzSpan="12" style="padding: 10px;">
+        <mdb-card style="height: 300px;">
+          <mdb-card-body>
+            <mdb-card-title>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Fv3IgGncxF0DQ4zAnRK-2vRDWeZSW6dOdqMumuHD5JlGLkx0WDc7JYFxvxWr5Qkzqew&usqp=CAU"
+                class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+              <p style="display: inline;">Khách hàng mới</p>
+            </mdb-card-title>
+
+            <mdb-card-text>
+              <hr>
+              <div>
+
+                <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+                  <nz-list-item *ngFor="let item of customerListShow">
+                    <nz-list-item-meta nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                      [nzDescription]="item.phoneNumber">
+                      <nz-list-item-meta-title>
+                        <a href="" routerLink="/app/admin/main/customer">{{ item.name }}</a>
+                      </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+                  <nz-list-empty *ngIf="customerListShow.length === 0"></nz-list-empty>
+                </nz-list>
+                
+              </div>
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+      <div nz-col nzSpan="12" style="padding: 10px;">
+        <mdb-card style="height: 300px;">
+          <mdb-card-body>
+            <mdb-card-title>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Fv3IgGncxF0DQ4zAnRK-2vRDWeZSW6dOdqMumuHD5JlGLkx0WDc7JYFxvxWr5Qkzqew&usqp=CAU"
+                class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+              <p style="display: inline;">Khách hàng mới</p>
+            </mdb-card-title>
+
+            <mdb-card-text>
+              <hr>
+              <div>
+                
+              </div>
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
   </div>
+
+
+  <div nz-col nzSpan="12" style="padding: 10px;">
+    <mdb-card style="height: 535px;">
+      <mdb-card-body>
+        <mdb-card-title>
+          <img
+            src="https://images.vexels.com/media/users/3/146265/isolated/preview/7ca0dcf43bfb86c6e4a83ffca34bc91e-column-chart-graph-by-vexels.png"
+            class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+          <p style="display: inline;">Doanh thu theo tháng</p>
+        </mdb-card-title>
+
+        <mdb-card-text>
+          <div style="display: block">
+            <canvas mdbChart [chartType]="chartType1" [datasets]="chartDatasets1" [labels]="chartLabels1"
+              [colors]="chartColors1" [options]="chartOptions1" [legend]="true" (chartHover)="chartHovered1($event)"
+              (chartClick)="chartClicked1($event)">
+            </canvas>
+          </div>
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+
+</div>
+
+<div nz-row>
+  <div nz-col nzSpan="12" style="padding: 10px;">
+    <mdb-card>
+      <mdb-card-body>
+        <mdb-card-title>
+          <img src="https://img2.pngio.com/growth-chart-png-file-png-all-growth-chart-logo-png-400_400.png"
+            class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+          <p style="display: inline;">Tăng trưởng doanh thu</p>
+        </mdb-card-title>
+
+        <mdb-card-text>
+          <div style="display: block">
+            <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+              [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+
+  </div>
+
+  <div nz-col nzSpan="12" style="padding: 10px;">
+    <mdb-card>
+      <mdb-card-body>
+        <mdb-card-title>
+          <img
+            src="https://images.vexels.com/media/users/3/129856/isolated/preview/83b8b3382c3f8f1ac4a8b16c5388360f-colorful-four-parts-pie-chart-by-vexels.png"
+            class="img-thumbnail" style="width: 30px; border: none; box-shadow: none;" alt="..."> &nbsp;
+          <p style="display: inline;">Tăng trưởng doanh thu</p>
+        </mdb-card-title>
+
+        <mdb-card-text>
+          <div nz-row>
+            <div nz-col nzSpan="12">
+              <div style="display: block">
+                <canvas mdbChart [chartType]="chartType2" [datasets]="chartDatasets2" [labels]="chartLabels2"
+                  [colors]="chartColors2" [options]="chartOptions2" [legend]="true" (chartHover)="chartHovered2($event)"
+                  (chartClick)="chartClicked2($event)">
+                </canvas>
+              </div>
+            </div>
+            <div nz-col nzSpan="12"></div>
+          </div>
+
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+
+  </div>
+</div>

@@ -46,9 +46,11 @@
               "src/assets/freeze-ui/freeze-ui.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte-css-only/css/adminlte.min.css",
-              "src/shared/core.less"
+              "src/shared/core.less",
+              "src/style.css"
 
 
+        
             
             ],
             "scripts": [
@@ -70,7 +72,11 @@
               "src/assets/plugin/js/sticky-header.js",
               "src/assets/plugin/js/owl.carousel.min.js",
               "src/assets/plugin/js/testimonial.js",
-              "src/assets/plugin/js/back-to-top.js"
+              "src/assets/plugin/js/back-to-top.js",
+
+
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"
             ]
           },
           "configurations": {

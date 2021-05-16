@@ -45,6 +45,7 @@ namespace GymManage.Catalog.MainAction.CustomerInTimeTable
             {
                CustomerId = request.CustomerId,
                TimeTableId = request.TimeTableId,
+               Active = request.Active
             };
 
             if (request.Id > 0)
@@ -87,6 +88,7 @@ namespace GymManage.Catalog.MainAction.CustomerInTimeTable
                 CustomerId = x.cit.CustomerId,
                 TimeTableId = x.cit.TimeTableId,
                 CustomerName = x.cus.Name,
+                Active = x.cit.Active,
                 CustomerPhoneNumber = x.cus.PhoneNumber,
                 ClassName = x.cl.Name,
                 EmployeeName = x.e.Name,
@@ -126,6 +128,7 @@ namespace GymManage.Catalog.MainAction.CustomerInTimeTable
                 CustomerName = x.cus.Name,
                 CustomerPhoneNumber = x.cus.PhoneNumber,
                 ClassName = x.cl.Name,
+                Active = x.cit.Active,
                 EmployeeName = x.e.Name,
                 Lesson = x.time.Lesson,
                 Date = x.time.Date,
@@ -163,6 +166,7 @@ namespace GymManage.Catalog.MainAction.CustomerInTimeTable
                 CustomerName = x.cus.Name,
                 CustomerPhoneNumber = x.cus.PhoneNumber,
                 ClassName = x.cl.Name,
+                Active = x.cit.Active,
                 EmployeeName = x.e.Name,
                 Lesson = x.time.Lesson,
                 Date = x.time.Date,

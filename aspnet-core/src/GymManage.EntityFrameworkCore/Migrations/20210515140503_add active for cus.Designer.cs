@@ -4,14 +4,16 @@ using GymManage.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GymManage.Migrations
 {
     [DbContext(typeof(GymManageDbContext))]
-    partial class GymManageDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210515140503_add active for cus")]
+    partial class addactiveforcus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
