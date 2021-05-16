@@ -13,6 +13,7 @@ export class CheckInComponent implements OnInit {
   customerFullList: CustomerViewModel[] = [];
   timeTableList: TimeTableViewModel[] = [];
   productInBillList: ProductInBillViewModel[] = [];
+  productInBillListFilter: ProductInBillViewModel[] = [];
   binding3: string
   isVisible = false;
   cusInClassList: CustomerInTimeTableViewModel[] = []
@@ -63,6 +64,10 @@ export class CheckInComponent implements OnInit {
 
   getProductInBillByCustomerId(customerId: number) {
     this.productInBillService.getProductInBillByCustomerId(customerId).subscribe(x => this.productInBillList = x)
+    setTimeout(() => {
+      this.productInBillListFilter = this.productInBillList.filter(x => x.toDate.isAfter(moment()) == true)
+    }, 500);
+    
   }
 
   getAllTimeTable(keyword: string, fromDate: string, toDate: string) {

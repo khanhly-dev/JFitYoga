@@ -17,29 +17,29 @@ import { AbpValidationError } from './abp-validation.api';
 export class AbpValidationSummaryComponent extends AppComponentBase implements OnInit {
 
   defaultValidationErrors: Partial<AbpValidationError>[] = [
-    { name: 'required', localizationKey: 'ThisFieldIsRequired' },
+    { name: 'required', localizationKey: 'Giá trị bắt buộc' },
     {
       name: 'minlength',
-      localizationKey: 'PleaseEnterAtLeastNCharacter',
+      localizationKey: 'Giá trị phải chứa nhiều hơn 1 kí tự',
       propertyKey: 'requiredLength',
     },
     {
       name: 'maxlength',
-      localizationKey: 'PleaseEnterNoMoreThanNCharacter',
+      localizationKey: 'Vượt quá độ dài tối đa',
       propertyKey: 'requiredLength',
     },
     {
       name: 'email',
-      localizationKey: 'InvalidEmailAddress',
+      localizationKey: 'Không phải định dạng email',
     },
     {
       name: 'pattern',
-      localizationKey: 'InvalidPattern',
+      localizationKey: 'Không đúng định dạng',
       propertyKey: 'requiredPattern',
     },
     {
       name: 'validateEqual',
-      localizationKey: 'PairsDoNotMatch',
+      localizationKey: 'Mật khẩu không khớp',
     },
   ];
   validationErrors = <AbpValidationError[]>this.defaultValidationErrors;

@@ -172,10 +172,10 @@
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Tên hóa đơn:</nz-form-label>
+                        <nz-form-label [nzSpan]="7" nzRequired>Mã hóa đơn:</nz-form-label>
                         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..."
                             [nzErrorTip]="userErrorTpl">
-                            <input nz-input formControlName="name" [(ngModel)]="billCode" />
+                            <input nz-input formControlName="name" [(ngModel)]="billCode" readonly/>
                         </nz-form-control>
                         <ng-template #userErrorTpl let-control>
                             <ng-container *ngIf="control.hasError('required')">

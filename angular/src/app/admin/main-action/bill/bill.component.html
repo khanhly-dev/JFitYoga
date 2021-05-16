@@ -73,7 +73,7 @@
                     <tr *ngFor="let data of table.data">
                         <td>{{data.id}}</td>
                         <td>{{data.name}}</td>
-                        <td>{{data.dateCreated | date:'YYYY-MM-dd'}}</td>
+                        <td>{{data.dateCreated | date:'dd-MM-YYYY'}}</td>
                         <td>{{data.userCreated}}</td>
                         <td>{{data.originalPrice | currency:'VND'}}</td>
                         <td>{{data.discount}}</td>

@@ -11,5 +11,6 @@ export class HeaderUserMenuComponent {
 
   logout(): void {
     this._authService.logout();
+    
   }
 }

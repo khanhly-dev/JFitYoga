@@ -13,6 +13,7 @@
 
         public const string Pages_Dashboard = "Pages.Dashboard";
 
+        public const string Pages_Home = "Pages.Home";
         public const string Pages_Admin_Base = "Pages.Admin.Base";
         public const string Pages_Admin_Base_Option = "Pages.Admin.Base.Option";
         public const string Pages_Admin_Base_Service = "Pages.Admin.Base.Service";

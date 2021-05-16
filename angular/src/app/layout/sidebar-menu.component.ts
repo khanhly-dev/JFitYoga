@@ -43,7 +43,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [         
-            new MenuItem(this.l('Tổng quan'), '/app/home', 'fas fa-chart-line'),
+            new MenuItem(this.l('Tổng quan'), '/app/home', 'fas fa-chart-line', 'Pages.Home'),
 
             new MenuItem(
                 this.l('Quản lý hệ thống'),

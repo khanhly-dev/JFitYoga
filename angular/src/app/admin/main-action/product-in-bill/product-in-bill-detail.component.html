@@ -12,7 +12,7 @@
                             {{productInBillBinding.userCreated}}
                             <br>
                             <label for="">Ngày tạo</label>     
-                            {{productInBillBinding.dateCreated | date:'YYYY-MM-dd'}}
+                            {{productInBillBinding.dateCreated | date:'dd-MM-YYYY'}}
                             <br>
                             <label for="">Tổng tiền:</label>
                             {{productInBillBinding.originalPrice | currency:'VND'}}
@@ -46,10 +46,10 @@
                             {{productInBillBinding.optionName}}
                             <br>
                             <label for="">Từ ngày:</label>
-                            {{productInBillBinding.fromDate | date:'YYYY-MM-dd'}}
+                            {{productInBillBinding.fromDate | date:'dd-MM-YYYY'}}
                             <br>
                             <label for="">Đến ngày:</label>
-                            {{productInBillBinding.toDate | date:'YYYY-MM-dd'}}
+                            {{productInBillBinding.toDate | date:'dd-MM-YYYY'}}
                             <br>
                         </div>
                     </div>

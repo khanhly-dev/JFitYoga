@@ -36,10 +36,10 @@
                     <tr *ngFor="let data of table.data">
                         <td>{{data.id}}</td>
                         <td>{{data.name}}</td>
-                        <td>{{data.born | date:'YYYY-MM-dd'}}</td>
+                        <td>{{data.born | date:'dd-MM-YYYY'}}</td>
                         <td>{{data.phoneNumber}}</td>
                         <td>{{data.adress}}</td>
-                        <td>{{data.fromDate | date:'YYYY-MM-dd'}}</td>
+                        <td>{{data.fromDate | date:'dd-MM-YYYY'}}</td>
                         <td>{{data.positionId | positionPipe: positionList}}</td>
                         <td>{{data.status | workStatusPipe  }}</td>
                         <td>

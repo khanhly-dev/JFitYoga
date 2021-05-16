@@ -54,7 +54,7 @@
         <div style="padding:30px;">
             <nz-card [nzBordered]="false" nzTitle="Thông tin thẻ">
                 <div>
-                    <nz-table nzTemplateMode #productInBillTable [nzData]="productInBillList">
+                    <nz-table nzTemplateMode #productInBillTable [nzData]="productInBillListFilter">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -68,7 +68,7 @@
                                 <td>{{item.id}}</td>
                                 <td>{{item.productName}}</td>
                                 <td>{{item.serviceName}}</td>
-                                <td>Từ {{item.fromDate | date: 'YYYY-MM-dd'}} đến {{item.toDate | date: 'YYYY-MM-dd'}}</td>
+                                <td>Từ {{item.fromDate | date: 'dd-MM-YYYY'}} đến {{item.toDate | date: 'dd-MM-YYYY'}}</td>
                             </tr>
 
                         </tbody>
@@ -79,7 +79,7 @@
     </div>
     <div nz-col nzSpan="8">
         <div style="padding:30px;">
-            <nz-card [nzBordered]="false" nzTitle="Danh sách lớp (Sĩ số: {{totalStudent}})">
+            <nz-card [nzBordered]="false" nzTitle="Danh sách lớp">
                 <div>
                     <nz-table nzTemplateMode #timetableTable [nzData]="timeTableList">
                         <thead>
@@ -98,9 +98,9 @@
                                 <td>{{item.className}} <br><hr> {{item.lesson}}</td>
                                 <td>{{item.employeeName}}</td>
                                 <td>{{item.sessionName}}</td>
-                                <td>{{item.date | date: 'YYYY-MM-dd'}}</td>
+                                <td>{{item.date | date: 'dd-MM-YYYY'}}</td>
                                 <td>
-                                    <button nz-button nzType="primary" (click)="insertCustomerIntoClass(customerSelect.value,item.id)">Thêm</button> <br><br>
+                                    <button nz-button nzType="primary" (click)="insertCustomerIntoClass(customerSelect.value,item.id)">Check in</button> <br><br>
                                     <button nz-button nzType="primary" (click)="showModal(item.id)">Chi tiết</button>
                                 </td>
                             </tr>
@@ -114,7 +114,7 @@
 </div>
 
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Danh sách học viên" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Danh sách học viên (Sĩ số: {{totalStudent}})" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
     <ng-container *nzModalContent>
         <nz-table nzTemplateMode #table [nzData]="cusInClassList">
             <thead>

@@ -80,11 +80,17 @@ export class TimeRegisterComponent implements OnInit {
         }
       }
     }
+
+    console.log(this.teacherList)
     this.timeTableFilter = this.timeTableList.find(x => x.employeeId == this.teacherId
       && x.sessionId == request.sessionId
       && x.day == request.day)
 
-    if (this.timeTableList.includes(this.timeTableFilter)) {
+    if(this.teacherList.length == 1)
+    {
+      alert('Bạn chưa cho giáo viên nào')
+    }
+    else if (this.timeTableList.includes(this.timeTableFilter)) {
       alert('1 giáo viên không thể dạy 2 lớp trong cùng 1 ca')
     }
     else {

@@ -35,13 +35,13 @@ export class CreateUserDialogComponent extends AppComponentBase
     {
       name: 'pattern',
       localizationKey:
-        'PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber',
+        'Mật khẩu chứa tối thiếu 8 kí tự và phải chứa cả chữ hoa và chữ thường',
     },
   ];
   confirmPasswordValidationErrors: Partial<AbpValidationError>[] = [
     {
       name: 'validateEqual',
-      localizationKey: 'PasswordsDoNotMatch',
+      localizationKey: 'Mật khẩu không khớp',
     },
   ];
 

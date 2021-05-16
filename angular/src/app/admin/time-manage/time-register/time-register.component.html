@@ -35,8 +35,8 @@
                         <td *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
                             <br> GV: {{childItem.employeeName}}
                             <br> Bài: {{childItem.lesson}}
-                            <button *ngIf="childItem.employeeName == 'Trống'" nz-button [nzSize]="size" nzType="default" (click)="createOrUpdateTimeTable(childItem)">đăng kí</button>
-                            <button *ngIf="childItem.employeeUserName == childItem.curentUserName" nz-button [nzSize]="size" nzType="default" (click)="Cancel(childItem)">hủy</button>
+                            <button *ngIf="childItem.employeeName == 'Trống'"  nzType="primary" nz-button [nzSize]="size" (click)="createOrUpdateTimeTable(childItem)">đăng kí</button>
+                            <button *ngIf="childItem.employeeUserName == childItem.curentUserName" nz-button [nzSize]="size"  nzType="primary" nzDanger (click)="Cancel(childItem)">hủy</button>
                             <hr>
                         </td>
     </div>

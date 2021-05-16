@@ -15,6 +15,8 @@ namespace GymManage.Authorization
 
             context.CreatePermission(PermissionNames.Pages_Dashboard, L("Dashboard"));
 
+            context.CreatePermission(PermissionNames.Pages_Home, L("Home"));
+
             var admin = context.CreatePermission(PermissionNames.Pages_Admin, L("Admin"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Base, L("Sản phẩm"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Base_Option, L("Gói thời hạn"));
