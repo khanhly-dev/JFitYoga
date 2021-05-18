@@ -34,6 +34,7 @@
     "core-js": "^3.2.1",
     "famfamfam-flags": "^1.0.0",
     "hammerjs": "^2.0.8",
+    "jquery": "^3.6.0",
     "lodash-es": "^4.17.15",
     "moment": "2.24.0",
     "moment-timezone": "^0.5.28",

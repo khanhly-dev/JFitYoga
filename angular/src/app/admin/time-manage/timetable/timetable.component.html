@@ -81,6 +81,7 @@
                         <td *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
                             <br> GV: {{childItem.employeeName}}
                             <br> Bài: {{childItem.lesson}}
+                            <br> Ngày: {{childItem.date | date: 'dd-MM-YYYY'}}
                             <hr>
                         </td>
     </div>

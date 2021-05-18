@@ -12,7 +12,7 @@ export class CreateOrUpdateTimetableComponent implements OnInit {
   //#region variable
   createOrUpdateForm: FormGroup;
   timeTableList: TimeTableViewModel[] = [];
-  timeTableFilter: TimeTableViewModel
+  timeTableFilter: TimeTableViewModel[] = []
 
   sessionList: SessionWorkViewModel[] = [];
   employeeList: EmployeeViewModel[] = [];
@@ -52,8 +52,7 @@ export class CreateOrUpdateTimetableComponent implements OnInit {
     this.getAllClass('')
     this.getAllEmployee('')
     this.getTeacher(1)
-    if(this.timeTableBinding != undefined)
-    {
+    if (this.timeTableBinding != undefined) {
       this.dayName = this.timeTableBinding.day;
     }
   }
@@ -74,12 +73,12 @@ export class CreateOrUpdateTimetableComponent implements OnInit {
     var formValue = this.createOrUpdateForm.value
 
     if (this.timeTableBinding == undefined) {
-      this.timeTableFilter = this.timeTableList.find(x => x.classId == formValue.classId
+      this.timeTableFilter = this.timeTableList.filter(x => x.classId == formValue.classId
         && x.sessionId == formValue.sessionId
-        && x.day == formValue.day)
+        && x.date.format('YYYY-MM-DD') == formValue.date)
     }
 
-    if (this.timeTableList.includes(this.timeTableFilter)) {
+    if (this.timeTableFilter.length > 0) {
       alert('thời gian biểu này đã tồn tại')
     }
     else {
@@ -95,27 +94,23 @@ export class CreateOrUpdateTimetableComponent implements OnInit {
     this.employeeService.getEmployeeByPosition(teacherId).subscribe(x => this.teacherList = x)
   }
 
-  getAllTimeTable(keyword:string, fromDate : string, toDate : string) {
+  getAllTimeTable(keyword: string, fromDate: string, toDate: string) {
     var fromDateConvert
     var toDateConvert
-    if(fromDate != undefined)
-    {
+    if (fromDate != undefined) {
       fromDateConvert = moment(fromDate)
     }
-    else
-    {
+    else {
       fromDateConvert = undefined
     }
 
-    if(fromDate != undefined)
-    {
+    if (fromDate != undefined) {
       toDateConvert = moment(toDate)
     }
-    else
-    {
+    else {
       toDateConvert = undefined
     }
-    
+
     this.timeTableService.getAllTimeTable(keyword, fromDateConvert, toDateConvert).subscribe(x => this.timeTableList = x);
   }
 

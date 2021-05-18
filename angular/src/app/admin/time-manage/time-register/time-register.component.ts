@@ -9,6 +9,7 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 })
 export class TimeRegisterComponent implements OnInit {
 
+  collapse = 'Bộ lọc';
   size: NzButtonSize = 'small'; //size of button
   sessionList: SessionWorkViewModel[] = [];
   teacherList: EmployeeViewModel[] = [];
@@ -25,7 +26,7 @@ export class TimeRegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllTimeTable('',undefined,undefined);
+    this.getAllTimeTable('', undefined, undefined);
     this.getAllSession('');
     this.getTeacher(1);
   }
@@ -39,27 +40,23 @@ export class TimeRegisterComponent implements OnInit {
     this.employeeService.getEmployeeByPosition(teacherId).subscribe(x => this.teacherList = x)
   }
 
-  getAllTimeTable(keyword:string, fromDate : string, toDate : string) {
+  getAllTimeTable(keyword: string, fromDate: string, toDate: string) {
     var fromDateConvert
     var toDateConvert
-    if(fromDate != undefined)
-    {
+    if (fromDate != undefined) {
       fromDateConvert = moment(fromDate)
     }
-    else
-    {
+    else {
       fromDateConvert = undefined
     }
 
-    if(fromDate != undefined)
-    {
+    if (fromDate != undefined) {
       toDateConvert = moment(toDate)
     }
-    else
-    {
+    else {
       toDateConvert = undefined
     }
-    
+
     this.timeTableService.getAllTimeTable(keyword, fromDateConvert, toDateConvert).subscribe(x => this.timeTableList = x);
   }
 
@@ -81,13 +78,15 @@ export class TimeRegisterComponent implements OnInit {
       }
     }
 
-    console.log(this.teacherList)
+
     this.timeTableFilter = this.timeTableList.find(x => x.employeeId == this.teacherId
       && x.sessionId == request.sessionId
-      && x.day == request.day)
+      && x.date.format('YYYY-MM-DD') == request.date.format('YYYY-MM-DD')
+    )
 
-    if(this.teacherList.length == 1)
-    {
+    request.date = moment(request.date.format('YYYY-MM-DDThh:mm:ss'));
+
+    if (this.teacherList.length == 1) {
       alert('Bạn chưa cho giáo viên nào')
     }
     else if (this.timeTableList.includes(this.timeTableFilter)) {
@@ -96,14 +95,10 @@ export class TimeRegisterComponent implements OnInit {
     else {
       request.employeeId = this.teacherId;
 
-      this.timeTableService.createOrUpdateTimeTable(request).subscribe();
-
       setTimeout(() => {
+        this.timeTableService.createOrUpdateTimeTable(request).subscribe();
         location.reload();
       }, 1000);
     }
-
-
-   
   }
 }

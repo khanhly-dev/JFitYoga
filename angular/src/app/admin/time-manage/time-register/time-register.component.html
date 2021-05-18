@@ -6,6 +6,51 @@
     <div nz-col nzSpan="24">
         <nz-card nzTitle="Bảng lịch học" [nzExtra]="extraTemplate">
 
+            <div nz-col class="gutter-row" [nzSpan]="24">
+                <nz-collapse>
+                    <nz-collapse-panel [nzHeader]="collapse">
+                        <div nz-row>
+                            <div nz-col nzSpan="1">
+                                <p>Từ ngày:</p>
+                            </div>
+                            <div nz-col nzSpan="4">
+                                <nz-input-group>
+                                    <input type="text" nz-input type="date" #fromDateFilter />
+                                </nz-input-group>
+
+                            </div>
+
+                            <div nz-col nzSpan="1">
+                                <p>Đến ngày:</p>
+                            </div>
+                            <div nz-col nzSpan="4">
+                                <nz-input-group>
+                                    <input type="text" nz-input type="date" #toDateFilter />
+                                </nz-input-group>
+                            </div>
+                            &nbsp;
+                            <div nz-row>
+                                <div nz-col>
+                                    <div nz-col nzSpan="4">
+                                        <button nz-button nzType="primary"
+                                            (click)="getAllTimeTable('',fromDateFilter.value,toDateFilter.value )">Áp
+                                            dụng</button>
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <div nz-col>
+                                    <div nz-col nzSpan="4">
+                                        <button nz-button nzType="primary"
+                                            (click)="getAllTimeTable('',undefined,undefined)">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </div>
+
             <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
                 <input type="text" #search nz-input placeholder="từ khóa....." />
             </nz-input-group>
@@ -35,6 +80,7 @@
                         <td *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
                             <br> GV: {{childItem.employeeName}}
                             <br> Bài: {{childItem.lesson}}
+                            <br> Ngày: {{childItem.date | date: 'dd-MM-YYYY'}}
                             <button *ngIf="childItem.employeeName == 'Trống'"  nzType="primary" nz-button [nzSize]="size" (click)="createOrUpdateTimeTable(childItem)">đăng kí</button>
                             <button *ngIf="childItem.employeeUserName == childItem.curentUserName" nz-button [nzSize]="size"  nzType="primary" nzDanger (click)="Cancel(childItem)">hủy</button>
                             <hr>
