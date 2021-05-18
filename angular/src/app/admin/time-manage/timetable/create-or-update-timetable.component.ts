@@ -13,6 +13,7 @@ export class CreateOrUpdateTimetableComponent implements OnInit {
   createOrUpdateForm: FormGroup;
   timeTableList: TimeTableViewModel[] = [];
   timeTableFilter: TimeTableViewModel[] = []
+  timeTableLessonCheck: TimeTableViewModel[] = [];
 
   sessionList: SessionWorkViewModel[] = [];
   employeeList: EmployeeViewModel[] = [];
@@ -72,13 +73,24 @@ export class CreateOrUpdateTimetableComponent implements OnInit {
 
     var formValue = this.createOrUpdateForm.value
 
+    //check lop bi trung
     if (this.timeTableBinding == undefined) {
       this.timeTableFilter = this.timeTableList.filter(x => x.classId == formValue.classId
         && x.sessionId == formValue.sessionId
         && x.date.format('YYYY-MM-DD') == formValue.date)
     }
+    //check bai hoc bi trung
+    if (this.timeTableBinding == undefined) {
+      this.timeTableLessonCheck = this.timeTableList.filter(x => x.lesson == formValue.lesson
+        && x.sessionId == formValue.sessionId
+        && x.date.format('YYYY-MM-DD') == formValue.date)
+    }
 
-    if (this.timeTableFilter.length > 0) {
+    if(this.timeTableLessonCheck.length > 0)
+    {
+      alert('ca này đã có lớp dạy bài học này')
+    }
+    else if (this.timeTableFilter.length > 0) {
       alert('thời gian biểu này đã tồn tại')
     }
     else {
