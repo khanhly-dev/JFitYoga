@@ -217,7 +217,7 @@ export class CashComponent implements OnInit {
     setTimeout(() => {
       if(this.productCategoryList.length == 0)
       {
-        alert('Bạn chưa có lựa chọn dịch vụ này trong danh mục')
+        
         this.optionProcess = this.optionList.find(x => x.id == optionId)
       }
       else

@@ -19,6 +19,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+
 import { PageComponent } from './page/page.component';
 
 import { SellComponent } from './sell.component';
@@ -62,6 +64,7 @@ import { DanceIntroComponent } from './dance-intro/dance-intro.component';
     NzDatePickerModule,
     NzSpaceModule,
     NzCollapseModule,
+    NzNotificationModule
   ]
 })
 export class SellModule { }

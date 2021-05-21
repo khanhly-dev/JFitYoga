@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CreateOrUpdateCustomerRequest, CustomerServiceProxy } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
 
@@ -17,6 +18,9 @@ export class CustomerRegisterComponent implements OnInit {
       this.createOrUpdateForm.controls[key].updateValueAndValidity();
     }
     this.createOrUpdateCustomer(value)
+    setTimeout(() => {
+      this.router.navigate(['/sell/login'])
+    }, 1000);
   }
 
   resetForm(e: MouseEvent): void {
@@ -29,7 +33,11 @@ export class CustomerRegisterComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder, private customerService: CustomerServiceProxy) {
+  constructor(
+    private fb: FormBuilder, 
+    private customerService: CustomerServiceProxy,
+    private router:Router,)
+     {
     this.createOrUpdateForm = this.fb.group({
       name: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],

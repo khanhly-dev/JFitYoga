@@ -160,7 +160,7 @@
                                     <nz-select [(ngModel)]="binding4" style="width: 100%;" nzShowSearch
                                         formControlName="customer">
                                         <nz-option *ngFor="let item of customerList"
-                                            [nzLabel]="item.phoneNumber + '  ||  ' + item.name" [nzValue]="item.id">
+                                            [nzLabel]="item.name + '  ||  ' + item.phoneNumber" [nzValue]="item.id">
                                         </nz-option>
                                     </nz-select>
                                 </div>

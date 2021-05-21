@@ -117,12 +117,13 @@ export class ShopingComponent implements OnInit {
         this.CreateBill(value);
         setTimeout(() => {
           this.createProductInBill(tempId, this.billIdCreated, this.fromDateToCreate, this.toDateToCreate)
+          this.createBasicNotification('bottomRight');
         }, 1000);
       }
       else
       {
         alert('Bạn cần đăng nhập để mua hàng')
-        this.createBasicNotification('bottomRight');
+       
       }
     }
   
@@ -214,7 +215,7 @@ export class ShopingComponent implements OnInit {
     setTimeout(() => {
       if(this.productCategoryList.length == 0)
       {
-        alert('Trung tâm hiện chưa phát triển gói dịch vụ này')
+        
         this.optionProcess = this.optionList.find(x => x.id == optionId)
       }
       else
