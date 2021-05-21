@@ -86,7 +86,7 @@
 
             <mdb-card-text>
               <hr>
-              <div>
+              <div *ngIf="customerList.length > 0">
 
                 <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
                   <nz-list-item *ngFor="let item of customerListShow">
@@ -98,8 +98,10 @@
                     </nz-list-item-meta>
                   </nz-list-item>
                   <nz-list-empty *ngIf="customerListShow.length === 0"></nz-list-empty>
-                </nz-list>
-                
+                </nz-list>             
+              </div>
+              <div *ngIf="customerList.length == 0">
+                Bạn chưa có khách hàng nào
               </div>
             </mdb-card-text>
           </mdb-card-body>

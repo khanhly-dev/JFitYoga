@@ -45,6 +45,7 @@ import { CreateOrUpdateSessionWorkComponent } from './time-manage/session-work/c
 import { TimetableComponent } from './time-manage/timetable/timetable.component';
 import { CreateOrUpdateTimetableComponent } from './time-manage/timetable/create-or-update-timetable.component';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { PositionPipePipe } from './pipe/position-pipe.pipe';
 import { WorkStatusPipePipe } from './pipe/work-status-pipe.pipe';
 import { TimeRegisterComponent } from './time-manage/time-register/time-register.component';
@@ -108,7 +109,7 @@ import { StudentComponent } from './class-manage/student/student.component';
     NzSpaceModule,
     NzCollapseModule,
     NzCheckboxModule,
-    
+    NzNotificationModule
   ],
   providers: [],
 })

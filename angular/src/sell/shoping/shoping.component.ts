@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BillServiceProxy, BillViewModel, CreateOrUpdateBillRequest, CreateOrUpdateProductInBillRequest, CustomerServiceProxy, CustomerViewModel, OptionServiceProxy, OptionViewModel, ProductCategoryServiceProxy, ProductCategoryViewModel, ProductInBillServiceProxy, ProductServiceProxy, ProductViewModel, ServiceServiceProxy, ServiceViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
+import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
 
 @Component({
@@ -55,6 +56,7 @@ export class ShopingComponent implements OnInit {
     private billService: BillServiceProxy,
     private productInBillService: ProductInBillServiceProxy,
     private productCategoryService: ProductCategoryServiceProxy,
+    private notification: NzNotificationService
   ) {
     this.createForm = this.fb.group({
       originalPrice: ['', [Validators.required]],
@@ -120,12 +122,22 @@ export class ShopingComponent implements OnInit {
       else
       {
         alert('Bạn cần đăng nhập để mua hàng')
+        this.createBasicNotification('bottomRight');
       }
     }
   
     setTimeout(() => {
       location.reload();
     }, 1000);
+  }
+
+  createBasicNotification(position: NzNotificationPlacement): void {
+    this.notification
+      .blank(
+        'Trạng thái',
+        'Thanh toán thành công',
+        { nzPlacement: position }
+      )
   }
 
   showModal(): void {

@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { BillServiceProxy, BillViewModel, CreateOrUpdateBillRequest, CreateOrUpdateProductInBillRequest, CustomerServiceProxy, CustomerViewModel, OptionServiceProxy, OptionViewModel, ProductCategoryServiceProxy, ProductCategoryViewModel, ProductInBillServiceProxy, ProductServiceProxy, ProductViewModel, ServiceServiceProxy, ServiceViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
+import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
 import { Observable, Observer } from 'rxjs';
 import { CreateOrUpdateBillComponent } from '../bill/create-or-update-bill.component';
@@ -54,6 +55,7 @@ export class CashComponent implements OnInit {
     private billService: BillServiceProxy,
     private produtcInBillService: ProductInBillServiceProxy,
     private productCategoryService: ProductCategoryServiceProxy,
+    private notification: NzNotificationService
   ) {
     this.createForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -121,12 +123,22 @@ export class CashComponent implements OnInit {
 
       setTimeout(() => {
         this.createProductInBill(a, this.billIdCreated, this.fromDateToCreate, this.toDateToCreate)
+        this.createBasicNotification('bottomRight');
       }, 1000);
     }
 
     setTimeout(() => {
       location.reload();
     }, 1000);
+  }
+
+  createBasicNotification(position: NzNotificationPlacement): void {
+    this.notification
+      .blank(
+        'Trạng thái',
+        'Thanh toán thành công',
+        { nzPlacement: position }
+      )
   }
 
   showModal(): void {

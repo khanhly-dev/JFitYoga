@@ -22,11 +22,11 @@ export class HomeComponent extends AppComponentBase implements OnInit {
   customerList: CustomerViewModel[] = [];
   customerListShow: CustomerViewModel[] = [];
   productInBillList: ProductInBillViewModel[] = [];
-  onlineShoping : ProductInBillViewModel[] = [];
-  onlinePercent : number;
+  onlineShoping: ProductInBillViewModel[] = [];
+  onlinePercent: number;
   yogaBillListFilter: ProductInBillViewModel[] = [];
   dacneBillListFilter: ProductInBillViewModel[] = [];
-  constructor(injector: Injector, 
+  constructor(injector: Injector,
     private productInBillService: ProductInBillServiceProxy,
     private customerService: CustomerServiceProxy,) {
     super(injector);
@@ -46,11 +46,20 @@ export class HomeComponent extends AppComponentBase implements OnInit {
     this.customerService.getAllCustomer(keyword).subscribe(x => this.customerList = x);
     var j = 0
     setTimeout(() => {
-      this.customerListShow[0] = this.customerList[this.customerList.length-1]
-      this.customerListShow[1] = this.customerList[this.customerList.length-2]
-      this.customerListShow[2] = this.customerList[this.customerList.length-3]
+      if (this.customerList.length == 1) {
+        this.customerListShow[0] = this.customerList[this.customerList.length - 1]
+      }
+      else if (this.customerList.length == 2) {
+        this.customerListShow[0] = this.customerList[this.customerList.length - 1]
+        this.customerListShow[1] = this.customerList[this.customerList.length - 2]
+      }
+      else if (this.customerList.length == 3) {
+        this.customerListShow[0] = this.customerList[this.customerList.length - 1]
+        this.customerListShow[1] = this.customerList[this.customerList.length - 2]
+        this.customerListShow[2] = this.customerList[this.customerList.length - 3]
+      }
     }, 1000);
-   
+
   }
 
 
@@ -59,10 +68,10 @@ export class HomeComponent extends AppComponentBase implements OnInit {
       this.productInBillList = x
       setTimeout(() => {
         this.onlineShoping = this.productInBillList.filter(x => x.note == 'Khách mua hàng online');
-        this.onlinePercent = (this.onlineShoping.length / this.productInBillList.length)*100
+        this.onlinePercent = (this.onlineShoping.length / this.productInBillList.length) * 100
         console.log(this.onlinePercent)
       }, 1000);
-     
+
     });
   }
   getYogaRevenue() {
@@ -73,7 +82,7 @@ export class HomeComponent extends AppComponentBase implements OnInit {
     }
     else {
       this.yogaRevenueToday = 0
-      for (let item of this.yogaBillListFilter) { 
+      for (let item of this.yogaBillListFilter) {
         this.yogaRevenueToday += item.totalPrice
       }
     }
@@ -157,7 +166,7 @@ export class HomeComponent extends AppComponentBase implements OnInit {
   public chartHovered(e: any): void { }
   //Biểu đồ tăng trưởng doanh thu
 
-//--------------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------
   public chartType1: string = 'bar';
 
   public chartDatasets1: Array<any> = [
