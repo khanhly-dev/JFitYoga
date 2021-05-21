@@ -36,6 +36,8 @@ export class ShopingComponent implements OnInit {
   isConfirmLoading = false;
 
   customer : string;
+  
+  optionProcess : OptionViewModel;
 
   showProductName: string
   showServiceName: string
@@ -69,12 +71,15 @@ export class ShopingComponent implements OnInit {
 
   onDateChange()
   {
-    var amount : number
-    for(let item of this.productCategoryList)
+    var amount: number
+    // for (let item of this.optionList) {
+    //   amount = item.amount
+    // }
+    if(this.optionProcess != undefined)
     {
-      amount = item.amount
+      amount = this.optionProcess.amount;
     }
-    this.toDateToCreate = moment(this.fromDateToCreate).subtract(-amount,'month').format('YYYY-MM-DD').toString();
+    this.toDateToCreate = moment(this.fromDateToCreate).subtract(-amount, 'month').format('YYYY-MM-DD').toString();
 
   }
 
@@ -195,10 +200,20 @@ export class ShopingComponent implements OnInit {
   getById(productId?: number, serviceId?: number, optionId?: number) {
     this.productCategoryService.getProductCategoryById(productId, serviceId, optionId).subscribe(x => this.productCategoryList = x)
     setTimeout(() => {
-      this.productCategory = this.productCategoryList.find(x => x.productId == productId
-        && x.serviceId == serviceId
-        && x.optionId == optionId
-      )
+      if(this.productCategoryList.length == 0)
+      {
+        alert('Trung tâm hiện chưa phát triển gói dịch vụ này')
+        this.optionProcess = this.optionList.find(x => x.id == optionId)
+      }
+      else
+      {
+        this.productCategory = this.productCategoryList.find(x => x.productId == productId
+          && x.serviceId == serviceId
+          && x.optionId == optionId
+        )     
+        this.optionProcess = this.optionList.find(x => x.id == optionId)      
+      }
+     
     }, 1000);
    
   }

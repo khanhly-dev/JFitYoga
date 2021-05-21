@@ -37,6 +37,7 @@ export class CashComponent implements OnInit {
   isVisible = false;
   isConfirmLoading = false;
 
+  optionProcess : OptionViewModel;
 
   original: number;
   discount: number;
@@ -79,8 +80,12 @@ export class CashComponent implements OnInit {
   }
   onDateChange() {
     var amount: number
-    for (let item of this.productCategoryList) {
-      amount = item.amount
+    // for (let item of this.optionList) {
+    //   amount = item.amount
+    // }
+    if(this.optionProcess != undefined)
+    {
+      amount = this.optionProcess.amount;
     }
     this.toDateToCreate = moment(this.fromDateToCreate).subtract(-amount, 'month').format('YYYY-MM-DD').toString();
 
@@ -198,13 +203,27 @@ export class CashComponent implements OnInit {
   getById(productId?: number, serviceId?: number, optionId?: number) {
     this.productCategoryService.getProductCategoryById(productId, serviceId, optionId).subscribe(x => this.productCategoryList = x)
     setTimeout(() => {
-      this.productCategory = this.productCategoryList.find(x => x.productId == productId
-        && x.serviceId == serviceId
-        && x.optionId == optionId
-      )
-
-        this.original = this.productCategory.price
-
+      if(this.productCategoryList.length == 0)
+      {
+        alert('Bạn chưa có lựa chọn dịch vụ này trong danh mục')
+        this.optionProcess = this.optionList.find(x => x.id == optionId)
+      }
+      else
+      {
+        this.productCategory = this.productCategoryList.find(x => x.productId == productId
+          && x.serviceId == serviceId
+          && x.optionId == optionId
+        )
+        if(this.productCategory != undefined)
+        {
+          this.original = this.productCategory.price
+        }
+       
+  
+        this.optionProcess = this.optionList.find(x => x.id == optionId)
+        
+      }
+     
     }, 1000);
   }
 
