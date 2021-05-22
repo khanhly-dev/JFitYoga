@@ -4,9 +4,9 @@
     <text name="HomePage" value="Home page" />
     <text name="About" value="About" />
     <text name="WelcomeMessage" value="Welcome to GymManage!" />
-    <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
+    <text name="FormIsNotValidMessage" value="Form không hợp lệ, vui lòng kiểm tra lại" />
     <text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
-    <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
+    <text name="InvalidUserNameOrPassword" value="Tài khoản hoặc mật khẩu không đúng" />
     <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
     <text name="TenantIsNotActive" value="Tenant {0} is not active." />
     <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
@@ -20,7 +20,7 @@
     <text name="UpdatePassword" value="Update Password" />
     <text name="RememberMe" value="Remember me" />
     <text name="LogIn" value="Log in" />
-    <text name="LoginFailed" value="Login failed!" />
+    <text name="LoginFailed" value="Đăng nhập thất bại!" />
     <text name="NameSurname" value="Name surname" />
     <text name="UserName" value="User name" />
     <text name="Name" value="Name" />

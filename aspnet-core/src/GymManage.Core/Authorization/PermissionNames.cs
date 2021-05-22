@@ -14,6 +14,7 @@
         public const string Pages_Dashboard = "Pages.Dashboard";
 
         public const string Pages_Home = "Pages.Home";
+        public const string Pages_Admin_Manage = "Pages.Admin.Manage";
         public const string Pages_Admin_Base = "Pages.Admin.Base";
         public const string Pages_Admin_Base_Option = "Pages.Admin.Base.Option";
         public const string Pages_Admin_Base_Service = "Pages.Admin.Base.Service";
@@ -38,6 +39,7 @@
         public const string Pages_Admin_Class_Student = "Pages.Admin.Class.Student";
         public const string Pages_Admin_Class_ClassCategory = "Pages.Admin.Class.ClassCategory";
 
+        public const string Pages_Admin_TimeTable = "Pages.Admin.TimeTable";
         public const string Pages_Admin_Time_SessionWork = "Pages.Admin.Time.SessionWork";
         public const string Pages_Admin_Time_TimeTable = "Pages.Admin.Time.TimeTable";
         public const string Pages_Admin_Time_Register = "Pages.Admin.Time.Register";

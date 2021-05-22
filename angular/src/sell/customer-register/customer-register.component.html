@@ -7,17 +7,28 @@
                 <form nz-form [formGroup]="createOrUpdateForm">
                     <nz-form-item>
                         <nz-form-label [nzSpan]="7" nzRequired>Tên</nz-form-label>
-                        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating...">
+                        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
                             <input nz-input formControlName="name" />
-        
+                            <ng-template #userErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    giá trị bắt buộc
+                                </ng-container>
+                            </ng-template>
                         </nz-form-control>
                     </nz-form-item>
         
                     <nz-form-item>
                         <nz-form-label [nzSpan]="7" nzRequired>SĐT</nz-form-label>
-                        <nz-form-control [nzSpan]="12" nzHasFeedback>
+                        <nz-form-control [nzSpan]="12" nzHasFeedback  nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl2">
                             <input nz-input formControlName="phoneNumber" />
-        
+                            <ng-template #userErrorTpl2 let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    giá trị bắt buộc
+                                </ng-container>
+                                <ng-container *ngIf="control.hasError('invalidPhoneNumber')">
+                                    Số điện thoại này đã tồn tại
+                                </ng-container>
+                            </ng-template>
                         </nz-form-control>
                     </nz-form-item>
         
@@ -39,16 +50,28 @@
         
                     <nz-form-item>
                         <nz-form-label [nzSpan]="7" nzRequired>Tài khoản</nz-form-label>
-                        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating...">
+                        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl1">
                             <input nz-input formControlName="userName" />
-        
+                            <ng-template #userErrorTpl1 let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    giá trị bắt buộc
+                                </ng-container>
+                                <ng-container *ngIf="control.hasError('invalidCusUser')">
+                                    Tài khoản này đã tồn tại
+                                </ng-container>
+                            </ng-template>
                         </nz-form-control>
                     </nz-form-item>
         
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Mật khẩu</nz-form-label>
-                        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please input your password!">
+                        <nz-form-label [nzSpan]="7" nzRequired>Mật khẩu</nz-form-label >
+                        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
                             <input nz-input type="password" formControlName="password" />
+                            <ng-template #userErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    giá trị bắt buộc
+                                </ng-container>
+                            </ng-template>
                         </nz-form-control>
                     </nz-form-item>
         

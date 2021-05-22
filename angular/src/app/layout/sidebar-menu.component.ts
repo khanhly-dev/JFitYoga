@@ -49,7 +49,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Quản lý hệ thống'),
                 '',
                 'fas fa-tasks',
-                '',
+                'Pages.Admin.Manage',
                 [
                     new MenuItem(
                         this.l('Phân quyền'),
@@ -78,7 +78,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Hoạt động chính'),
                 '',
                 'fas fa-home',
-                '',
+                'Pages.Admin.Main',
                 [
                     new MenuItem(
                         this.l('Khách hàng'),
@@ -118,7 +118,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Sản phẩm'),
                 '',
                 'fas fa-shopping-cart',
-                '',
+                'Pages.Admin.Base',
                 [
                     new MenuItem(
                         this.l('Gói thời hạn'),
@@ -151,7 +151,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Nội bộ'),
                 '',
                 'fas fa-clipboard',
-                '',
+                'Pages.Admin.Internal',
                 [
                     new MenuItem(
                         this.l('Nhân viên'),
@@ -173,7 +173,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Quản lý lớp học'),
                 '',
                 'fas fa-graduation-cap',
-                '',
+                'Pages.Admin.Class',
                 [                  
                     new MenuItem(
                         this.l('Danh sách lớp học'),
@@ -201,7 +201,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Thời gian biểu'),
                 '',
                 'fas fa-clock',
-                '',
+                'Pages.Admin.TimeTable',
                 [                  
                     new MenuItem(
                         this.l('Ca học'),

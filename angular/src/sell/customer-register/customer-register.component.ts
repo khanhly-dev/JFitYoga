@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CreateOrUpdateCustomerRequest, CustomerServiceProxy } from '@shared/service-proxies/service-proxies';
+import { CreateOrUpdateCustomerRequest, CustomerServiceProxy, CustomerViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
 
 @Component({
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class CustomerRegisterComponent implements OnInit {
 
   createOrUpdateForm: FormGroup;
+  customerList: CustomerViewModel[] = [];
 
   submitForm(value: CreateOrUpdateCustomerRequest): void {
     for (const key in this.createOrUpdateForm.controls) {
@@ -40,16 +41,39 @@ export class CustomerRegisterComponent implements OnInit {
      {
     this.createOrUpdateForm = this.fb.group({
       name: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required, this.checkDuplicatePhoneNumber().bind(this)]],
       adress: [''],
       born: [''],
-      userName: ['', [Validators.required]],
+      userName: ['', [Validators.required, this.checkDuplicateCustomerUser().bind(this)]],
       password: ['', [Validators.required]],
       email: [''],
     });
   }
   ngOnInit(): void {
-   
+    this.getAllCustomer('');
+  }
+
+  getAllCustomer(keyword: string) {
+    this.customerService.getAllCustomer(keyword).subscribe(x => this.customerList = x);
+
+  }
+
+  checkDuplicateCustomerUser()
+  {
+    return (cusUser : AbstractControl) => {
+      return (this.customerList.filter(x => x.userName == cusUser.value).length > 0) ? {
+        invalidCusUser : true
+      } : null
+    };
+  }
+
+  checkDuplicatePhoneNumber()
+  {
+    return (phoneNumber : AbstractControl) => {
+      return (this.customerList.filter(x => x.phoneNumber == phoneNumber.value).length > 0) ? {
+        invalidPhoneNumber : true
+      } : null
+    };
   }
 
   createOrUpdateCustomer(request: CreateOrUpdateCustomerRequest) {

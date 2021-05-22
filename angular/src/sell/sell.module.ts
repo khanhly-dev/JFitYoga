@@ -22,6 +22,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 import { PageComponent } from './page/page.component';
+import { SharedModule } from '@shared/shared.module';
 
 import { SellComponent } from './sell.component';
 import { FooterComponent } from './footer/footer.component';
@@ -64,7 +65,8 @@ import { DanceIntroComponent } from './dance-intro/dance-intro.component';
     NzDatePickerModule,
     NzSpaceModule,
     NzCollapseModule,
-    NzNotificationModule
+    NzNotificationModule,
+    SharedModule 
   ]
 })
 export class SellModule { }

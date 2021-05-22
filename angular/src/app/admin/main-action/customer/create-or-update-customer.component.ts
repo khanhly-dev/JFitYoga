@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_ASYNC_VALIDATORS, Validators } from '@angular/forms';
 import { CreateOrUpdateCustomerRequest, CustomerServiceProxy, CustomerViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
-import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-create-or-update-customer',
@@ -26,13 +25,22 @@ export class CreateOrUpdateCustomerComponent implements OnInit {
   constructor(private fb: FormBuilder, private customerService: CustomerServiceProxy) {
     this.createOrUpdateForm = this.fb.group({
       name: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required, this.checkDuplicatePhoneNumber().bind(this)]],
       adress: [''],
       born: [''],
       userName: ['', [Validators.required]],
       password: ['', [Validators.required]],
       email: [''],
     });
+  }
+
+  checkDuplicatePhoneNumber()
+  {
+    return (phoneNumber : AbstractControl) => {
+      return (this.customerList.filter(x => x.phoneNumber == phoneNumber.value).length > 0) ? {
+        invalidPhoneNumber : true
+      } : null
+    };
   }
 
   ngOnInit(): void {

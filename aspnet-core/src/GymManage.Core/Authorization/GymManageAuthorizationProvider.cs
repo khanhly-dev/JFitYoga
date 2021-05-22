@@ -8,16 +8,22 @@ namespace GymManage.Authorization
     {
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
-            context.CreatePermission(PermissionNames.Pages_Users, L("Users"));
+            
             context.CreatePermission(PermissionNames.Pages_Users_Activation, L("UsersActivation"));
-            context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
-            context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
+            
+          
 
             context.CreatePermission(PermissionNames.Pages_Dashboard, L("Dashboard"));
 
             context.CreatePermission(PermissionNames.Pages_Home, L("Home"));
 
+
             var admin = context.CreatePermission(PermissionNames.Pages_Admin, L("Admin"));
+            admin.CreateChildPermission(PermissionNames.Pages_Admin_Manage, L("Quản lý hệ thống"));
+            admin.CreateChildPermission(PermissionNames.Pages_Users, L("Users"));
+            admin.CreateChildPermission(PermissionNames.Pages_Roles, L("Roles"));
+            admin.CreateChildPermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
+
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Base, L("Sản phẩm"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Base_Option, L("Gói thời hạn"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Base_Service, L("Dịch vụ"));
@@ -40,6 +46,7 @@ namespace GymManage.Authorization
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Class_Student, L("Học viên"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Class_ClassCategory, L("Phân loại lớp"));
 
+            admin.CreateChildPermission(PermissionNames.Pages_Admin_TimeTable, L("Thời gian biểu"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Time_SessionWork, L("Ca học"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Time_TimeTable, L("Lịch học"));
             admin.CreateChildPermission(PermissionNames.Pages_Admin_Time_Register, L("Đăng ký lịch dạy"));
