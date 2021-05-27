@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace GymManage.Service
 {
-    [Table("Service")]
+    [Table("DichVu")]
     public class ServiceEntity : Entity
     {
+        [Column("Ten")]
         public string Name { get; set; }
+        [Column("MoTa")]
         public string Description { get; set; }
     }
 }

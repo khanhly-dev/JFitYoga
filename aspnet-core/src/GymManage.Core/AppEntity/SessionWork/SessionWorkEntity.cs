@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace GymManage.AppEntity.SessionWork
 {
-    [Table("SessionWork")]
+    [Table("Ca")]
     public class SessionWorkEntity : Entity
     {
+        [Column("Ten")]
         public string Name { get; set; }
+        [Column("ThoiGianBatDau")]
         public DateTime FromTime { get; set; }
+        [Column("ThoiGianKetThuc")]
         public DateTime ToTime { get; set; }
     }
 }

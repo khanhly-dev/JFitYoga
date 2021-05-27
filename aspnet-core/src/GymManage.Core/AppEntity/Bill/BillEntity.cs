@@ -9,21 +9,28 @@ using System.Threading.Tasks;
 
 namespace GymManage.Bill
 {
-    [Table("Bill")]
+    [Table("HoaDon")]
     public class BillEntity : Entity
     {
         [ForeignKey(nameof(CustomerId))]
+        [Column("MaKhachHang")]
         public int CustomerId { get; set; }
         public CustomerEntity Customer { get; set; }
 
-        public string Name { get; set; }
-
+        [Column("Ten")]
+        public string Name { get; set; }    
         private DateTime dateCreated;
+        [Column("NgayTao")]
         public DateTime DateCreated { get { return dateCreated; } set { dateCreated = DateTime.Now; } }
+        [Column("NguoiTao")]
         public string UserCreated { get; set; }
+        [Column("TongTien")]
         public float OriginalPrice { get; set; }
+        [Column("GiamGia")]
         public float Discount { get; set; }
-        public float TotalPrice { get; set; }      
+        [Column("ThanhTien")]
+        public float TotalPrice { get; set; }
+        [Column("GhiChu")]
         public string Note { get; set; }
     }
 }

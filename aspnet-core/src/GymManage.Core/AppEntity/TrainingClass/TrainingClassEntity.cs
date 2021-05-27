@@ -10,15 +10,18 @@ using System.Threading.Tasks;
 
 namespace GymManage.TrainingClass
 {
-    [Table("TrainingClass")]
+    [Table("LopHoc")]
     public class TrainingClassEntity : Entity
     {
         [Required]
         [MinLength(5)]
+        [Column("Ten")]
         public string Name { get; set; }
+
         //khoa ngoai den category
         [ForeignKey(nameof(TrainingClassCategoryId))]
         public TrainingClassCategoryEntity TrainingClassCategory { get; set; }
+        [Column("MaPhanLoaiLop")]
         public int TrainingClassCategoryId { get; set; }
        
     }

@@ -10,17 +10,20 @@ using System.Threading.Tasks;
 
 namespace GymManage.AppEntity.CustomerInTimeTable
 {
-    [Table("CustomerInTimeTable")]
+    [Table("KhachHangDangKi")]
     public class CustomerInTimeTableEntity : Entity
     {
         [ForeignKey(nameof(CustomerId))]
         public CustomerEntity Customer { get; set; }
+        [Column("MaKhachHang")]
         public int CustomerId { get; set; }
 
         [ForeignKey(nameof(TimeTableId))]
         public TimeTableEntity TimeTable { get; set; }
+        [Column("MaLichHoc")]
         public int TimeTableId { get; set; }
 
+        [Column("CheckIn")]
         public bool Active { get; set; }
     }
 }

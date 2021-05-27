@@ -8,15 +8,22 @@ using System.Threading.Tasks;
 
 namespace GymManage.Customer
 {
-    [Table("Customer")]
+    [Table("KhachHang")]
     public class CustomerEntity : Entity
     {
+        [Column("Ten")]
         public string Name { get; set; }
+        [Column("SoDienThoai")]
         public string PhoneNumber { get; set; }
+        [Column("DiaChi")]
         public string Adress { get; set; }
+        [Column("NgaySinh")]
         public DateTime? Born { get; set; }
+        [Column("TaiKhoan")]
         public string UserName { get; set; }
+        [Column("MatKhau")]
         public string Password { get; set; }
+        [Column("Email")]
         public string Email { get; set; }
     }
 }

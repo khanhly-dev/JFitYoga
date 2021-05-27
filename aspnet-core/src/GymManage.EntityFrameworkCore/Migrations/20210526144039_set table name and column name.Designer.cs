@@ -4,14 +4,16 @@ using GymManage.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GymManage.Migrations
 {
     [DbContext(typeof(GymManageDbContext))]
-    partial class GymManageDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210526144039_set table name and column name")]
+    partial class settablenameandcolumnname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

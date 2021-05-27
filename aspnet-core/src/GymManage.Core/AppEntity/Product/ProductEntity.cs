@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace GymManage.Product
 {
-    [Table("Product")]
+    [Table("BoMon")]
     public class ProductEntity :Entity
     {
+        [Column("Ten")]
         public string Name { get; set; }
+        [Column("MoTa")]
         public string Description { get; set; }
     }
 }

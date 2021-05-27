@@ -67,26 +67,27 @@
             <nz-table #table [nzData]="dayList">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Ca</th>
-                        <th *ngFor="let item of dayList" #dayValue>{{item}}</th>
+                        <th style="background-color: sandybrown;">Ca</th>
+                        <th style="text-align: center; background-color: sandybrown;" *ngFor="let item of dayList" #dayValue>{{item}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let data of sessionList">
-                        <td>{{data.id}}</td>
+                        
                         <td>{{data.name}}</td>
+
+                        <!--1 lich hoc-->
                         <td *ngFor="let item of dayList">
-                            <div *ngFor="let childItem of timeTableList">
-                        <td *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
-                            <br> GV: {{childItem.employeeName}}
-                            <br> Bài: {{childItem.lesson}} 
-                            <br>
-                            <button nz-button nzSize="small" nzType="default" (click)="addStudentIntoClass(childItem.id)">đăng kí</button>
-                            <button nz-button nzSize="small" nzType="default" (click)="cancelRegisterStudentInClass(childItem.id)">hủy</button>
-                            <hr>
-                        </td>
-    </div>
+                            <div  style="padding-left: 30%;border: solid 1px;" *ngFor="let childItem of timeTableList" >
+                                <td style="text-align: center;" *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
+                                    <br> Bài: {{childItem.lesson}} 
+                                    <br> GV: {{childItem.employeeName}}
+                                    <br>
+                                    <button style="margin-top: 10%;" nz-button  nzSize="small" nzType="primary" (click)="addStudentIntoClass(childItem.id)">Đăng kí</button>
+                                    <button style="margin-top: 10%;" nz-button nzSize="small" nzType="primary" nzDanger (click)="cancelRegisterStudentInClass(childItem.id)">Hủy</button>
+                                    <hr>
+                                </td>
+                            </div>
     </td>
     </tr>
 

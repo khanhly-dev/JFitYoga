@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace GymManage.Option
 {
-    [Table("Option")]
+    [Table("GoiThoiHan")]
     public class OptionEntity : Entity
     {
+        [Column("Ten")]
         public string Name { get; set; }
+        [Column("ChiSo")]
         public int Amount { get; set; }
+        [Column("DonVi")]
         public string Unit { get; set; }
+        [Column("MoTa")]
         public string Description { get; set; }
     }
 }

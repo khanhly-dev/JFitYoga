@@ -12,16 +12,18 @@ using System.Threading.Tasks;
 
 namespace GymManage.ProductCategory
 {
-    [Table("ProductCategory")]
+    [Table("DanhMucSanPham")]
     public class ProductCategoryEntity : Entity
     {
         [ForeignKey(nameof(ProductId))]
+        [Column("MaBoMon")]
         public int ProductId { get; set; }
         public ProductEntity Product { get; set; }
 
 
 
         [ForeignKey(nameof(OptionId))]
+        [Column("MaGoiThoiHan")]
         public int OptionId { get; set; }
         public OptionEntity Option { get; set; }
 
@@ -29,6 +31,7 @@ namespace GymManage.ProductCategory
 
 
         [ForeignKey(nameof(ServiceId))]
+        [Column("MaDichVu")]
         public int ServiceId { get; set; }
         public ServiceEntity Service { get; set; }
 
