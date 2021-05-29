@@ -72,11 +72,9 @@
               "src/assets/plugin/js/sticky-header.js",
               "src/assets/plugin/js/owl.carousel.min.js",
               "src/assets/plugin/js/testimonial.js",
-              "src/assets/plugin/js/back-to-top.js",
+              "src/assets/plugin/js/back-to-top.js"
 
 
-              "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js"
             ]
           },
           "configurations": {
