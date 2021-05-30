@@ -1723,8 +1723,8 @@ namespace GymManage.Migrations
                         {
                             Id = 1,
                             Adress = "NaN",
-                            Born = new DateTime(2021, 5, 26, 21, 40, 38, 218, DateTimeKind.Local).AddTicks(1869),
-                            FromDate = new DateTime(2021, 5, 26, 21, 40, 38, 220, DateTimeKind.Local).AddTicks(1553),
+                            Born = new DateTime(2021, 5, 30, 22, 49, 28, 831, DateTimeKind.Local).AddTicks(3081),
+                            FromDate = new DateTime(2021, 5, 30, 22, 49, 28, 832, DateTimeKind.Local).AddTicks(2283),
                             Name = "Trống",
                             Password = "",
                             PhoneNumber = "000",
