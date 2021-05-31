@@ -9,7 +9,7 @@
             <div nz-row style="text-align: center;">
                 <div nz-col nzSpan="10"></div>
                 <div nz-col nzSpan="4">
-                    <button nz-button nzType="primary" nzSize="smalls">Sửa</button>
+                    <button (click)="showModal()" nz-button nzType="primary" nzSize="smalls">Sửa</button>
                 </div>
                 <div nz-col nzSpan="10"></div>
                 
@@ -42,7 +42,7 @@
     
     <div nz-row>
         <nz-card style="width:100%; padding: 30px;" nzTitle="Thông tin danh sách thẻ đã mua" [nzExtra]="extraTemplate">
-            <nz-radio-group [(ngModel)]="statusCheck">
+            <nz-radio-group [(ngModel)]="radio" (ngModelChange)="getAllProductInBill('', radioStatus.value)" #radioStatus>
                 <label nz-radio nzValue="all">Tất cả</label>
                 <label nz-radio nzValue="inTime">Còn hạn</label>
                 <label nz-radio nzValue="outTime">Hết hạn</label>
@@ -85,4 +85,18 @@
         </ng-template>
     </div>
 </div>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Thêm/sửa khách hàng</ng-template>
+
+    <ng-template #modalContent>
+        
+        <app-customer-update (closeEvent)="handleCancel()" (saveEvent)="handleOk()" [customerBinding]="customerListFilter"></app-customer-update>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        
+    </ng-template>
+</nz-modal>
+
 <app-footer></app-footer>
