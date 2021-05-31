@@ -3,7 +3,7 @@
 </div>
 <div nz-row>
     <div nz-col nzSpan="16">
-        <div style="padding:30px;">
+        <div style="padding:10px;">
             <nz-card [nzBordered]="false" nzTitle="Tùy chọn sản phẩm" [nzExtra]="extraTemplate">
                 <div nz-row>
                     <div nz-col [nzSpan]="12">
@@ -148,12 +148,12 @@
 
 
     <div nz-col nzSpan="8">
-        <div style="padding:30px;">
+        <div style="padding:10px;">
             <nz-card [nzBordered]="false" nzTitle="Thông tin hóa đơn">
                 <form nz-form [formGroup]="createForm">
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Khách hàng:</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Khách hàng</nz-form-label>
                         <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="Validating...">
                             <div nz-row>
                                 <div nz-col nzSpan="17">
@@ -172,7 +172,7 @@
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Mã hóa đơn:</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Mã hóa đơn</nz-form-label>
                         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..."
                             [nzErrorTip]="userErrorTpl">
                             <input nz-input formControlName="name" [(ngModel)]="billCode" readonly/>
@@ -188,7 +188,7 @@
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Ngày tạo:</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Ngày tạo</nz-form-label>
                         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating...">
                             <input nz-input type="datetime" readonly [(ngModel)]="dateCreated"
                                 formControlName="dateCreated" />
@@ -196,7 +196,7 @@
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Tổng tiền:</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Tổng tiền</nz-form-label>
                         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating...">
                             <input nz-input formControlName="originalPrice" [(ngModel)]="original" readonly
                                 *ngIf="discountSelect.value == 'tiền' || discountSelect.value == undefined" (ngModelChange)="OnDiscountMoneyChanges()" />
@@ -207,10 +207,10 @@
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Giảm giá</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Giảm giá</nz-form-label>
                         <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="Validating...">
                             <div nz-row>
-                                <div nz-col nzSpan="17">
+                                <div nz-col nzSpan="18">
                                     <input nz-input formControlName="Discount" [(ngModel)]="discount"
                                         *ngIf="discountSelect.value == 'tiền' || discountSelect.value == undefined" (ngModelChange)="OnDiscountMoneyChanges()" />
 
@@ -218,9 +218,9 @@
                                         *ngIf="discountSelect.value == '%'"
                                         (ngModelChange)="onDiscountPercentChanges()" />
                                 </div>
-                                <div nz-col nzSpan="5">
+                                <div nz-col nzSpan="4">
                                     <nz-select #discountSelect>
-                                        <nz-option nzLabel="tiền" nzValue="tiền">
+                                        <nz-option nzLabel="$" nzValue="tiền">
                                         </nz-option>
                                         <nz-option nzLabel="%" nzValue="%">
                                         </nz-option>
@@ -231,14 +231,14 @@
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Thành tiền</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Thành tiền</nz-form-label>
                         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating...">
                             <input nz-input formControlName="totalPrice" [(ngModel)]="total" />
                         </nz-form-control>
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzRequired>Ghi chú</nz-form-label>
+                        <nz-form-label [nzSpan]="8" nzRequired>Ghi chú</nz-form-label>
                         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating...">
                             <input nz-input formControlName="note" />
                         </nz-form-control>

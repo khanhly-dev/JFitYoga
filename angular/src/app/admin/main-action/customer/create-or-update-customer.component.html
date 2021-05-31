@@ -77,7 +77,7 @@
 
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>User name:</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl33">
             <div *ngIf="customerBinding != undefined; then thenBlock4 else elseBlock4"></div>
             <ng-template #thenBlock4>
                 <input nz-input formControlName="userName" value="Trống" [(ngModel)]="customerBinding.userName" />
@@ -86,11 +86,13 @@
                 <input nz-input formControlName="userName" value="Trống" />
             </ng-template>
 
-            <ng-template #userErrorTpl let-control>
+            <ng-template #userErrorTpl33 let-control>
                 <ng-container *ngIf="control.hasError('required')">
                     giá trị bắt buộc
                 </ng-container>
-
+                <ng-container *ngIf="control.hasError('invalidCusUser')">
+                    Tài khoản này đã tồn tại
+                </ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>

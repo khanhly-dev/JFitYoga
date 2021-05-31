@@ -28,10 +28,19 @@ export class CreateOrUpdateCustomerComponent implements OnInit {
       phoneNumber: ['', [Validators.required, this.checkDuplicatePhoneNumber().bind(this)]],
       adress: [''],
       born: [''],
-      userName: ['', [Validators.required]],
+      userName: ['', [Validators.required, this.checkDuplicateCustomerUser().bind(this)]],
       password: ['', [Validators.required]],
       email: [''],
     });
+  }
+
+  checkDuplicateCustomerUser()
+  {
+    return (cusUser : AbstractControl) => {
+      return (this.customerList.filter(x => x.userName == cusUser.value).length > 0) ? {
+        invalidCusUser : true
+      } : null
+    };
   }
 
   checkDuplicatePhoneNumber()

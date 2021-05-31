@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { CustomerLoginComponent } from './customer-login/customer-login.component';
 import { CustomerRegisterComponent } from './customer-register/customer-register.component';
 import { DanceIntroComponent } from './dance-intro/dance-intro.component';
@@ -22,7 +23,8 @@ import { YogaIntroComponent } from './yoga-intro/yoga-intro.component';
             {path : 'login', component: CustomerLoginComponent},
             {path : 'register', component: CustomerRegisterComponent},
             {path : 'student', component: StudentRegisterComponent},
-            {path : 'page', component: PageComponent},  
+            {path : 'page', component: PageComponent}, 
+            {path : 'info', component: CustomerInfoComponent},  
             {path : 'time', component: TimetableOfCustomerComponent},      
             {path : 'yoga-introduction', component: YogaIntroComponent},      
             {path : 'dance-introduction', component: DanceIntroComponent},      

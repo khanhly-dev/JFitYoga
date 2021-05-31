@@ -20,6 +20,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 import { PageComponent } from './page/page.component';
 import { SharedModule } from '@shared/shared.module';
@@ -29,6 +30,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TimetableOfCustomerComponent } from './timetable-of-customer/timetable-of-customer.component';
 import { YogaIntroComponent } from './yoga-intro/yoga-intro.component';
 import { DanceIntroComponent } from './dance-intro/dance-intro.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { DanceIntroComponent } from './dance-intro/dance-intro.component';
     FooterComponent,
     TimetableOfCustomerComponent,
     YogaIntroComponent,
-    DanceIntroComponent
+    DanceIntroComponent,
+    CustomerInfoComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +69,8 @@ import { DanceIntroComponent } from './dance-intro/dance-intro.component';
     NzSpaceModule,
     NzCollapseModule,
     NzNotificationModule,
-    SharedModule 
+    SharedModule,
+    NzRadioModule
   ]
 })
 export class SellModule { }

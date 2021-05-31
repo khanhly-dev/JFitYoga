@@ -85,13 +85,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                         '/app/admin/main/customer',
                         'fas fa-user-tie',
                         'Pages.Admin.Main.Customer'
-                    ),
-                    new MenuItem(
-                        this.l('Hóa đơn'),
-                        '/app/admin/main/bill',
-                        'fas fa-money-bill',
-                        'Pages.Admin.Main.Bill'
-                    ),
+                    ),               
                     new MenuItem(
                         this.l('Thanh toán'),
                         '/app/admin/main/cash',
@@ -103,6 +97,12 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                         '/app/admin/main/check-in',
                         'fas fa-check-circle',
                         'Pages.Admin.Main.CheckIn'
+                    ),
+                    new MenuItem(
+                        this.l('Hóa đơn'),
+                        '/app/admin/main/bill',
+                        'fas fa-money-bill',
+                        'Pages.Admin.Main.Bill'
                     ),
                     new MenuItem(
                         this.l('Chi tiết hóa đơn'),

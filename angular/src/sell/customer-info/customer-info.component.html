@@ -1,0 +1,88 @@
+<div>
+    <div nz-row>
+        <div nz-col style="padding: 30px;">
+            <div nz-row>
+                <img width="200px" height="200px"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/User-info.svg/1024px-User-info.svg.png"
+                alt="" />
+            </div>
+            <div nz-row style="text-align: center;">
+                <div nz-col nzSpan="10"></div>
+                <div nz-col nzSpan="4">
+                    <button nz-button nzType="primary" nzSize="smalls">Sửa</button>
+                </div>
+                <div nz-col nzSpan="10"></div>
+                
+            </div>
+        </div>
+        <div nz-col>
+            <hr>
+            <div *ngIf="curentAccount != undefined">
+                <label style="font-size: 15px;" for="">Tên khách hàng:</label>&nbsp;
+                <p style="display: inline; font-size: 15px;">{{curentAccount.name}} </p>
+            </div>
+            <br>
+            <div *ngIf="curentAccount != undefined">
+                <label style="font-size: 15px;" for="">Số điện thoại:</label>&nbsp;
+                <p style="display: inline; font-size: 15px;">{{curentAccount.phoneNumber}} </p>
+            </div>
+            <br>
+            <div *ngIf="curentAccount != undefined">
+                <label style="font-size: 15px;" for="">Tài khoản:</label>&nbsp;
+                <p style="display: inline; font-size: 15px;">{{curentAccount.userName}} </p>
+            </div>
+            <br>
+            <div *ngIf="curentAccount != undefined">
+                <label style="font-size: 15px;" for="">Mật khẩu:</label>&nbsp;
+                <p style="display: inline; font-size: 15px;">{{curentAccount.password}} </p>
+            </div>
+            <hr>
+        </div>
+    </div>
+    
+    <div nz-row>
+        <nz-card style="width:100%; padding: 30px;" nzTitle="Thông tin danh sách thẻ đã mua" [nzExtra]="extraTemplate">
+            <nz-radio-group [(ngModel)]="statusCheck">
+                <label nz-radio nzValue="all">Tất cả</label>
+                <label nz-radio nzValue="inTime">Còn hạn</label>
+                <label nz-radio nzValue="outTime">Hết hạn</label>
+              </nz-radio-group>
+            <br>
+            <br>
+            <nz-table nzTemplateMode #billManageTable [nzData]="productOfCurentUserList">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ngày mua</th>
+                        <th>Giá</th>
+                        <th>Bộ môn</th>
+                        <th>Dịch vụ</th>
+                        <th>Gói thời hạn</th>
+                        <th>Từ ngày</th>
+                        <th>Đến ngày</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of billManageTable.data">
+                        <td>{{item.id}}</td>
+                        <td>{{item.dateCreated | date:'dd-MM-YYYY'}}</td>
+                        <td>{{item.totalPrice}}</td>
+                        <td>{{item.productName}}</td>
+                        <td>{{item.serviceName}}</td>
+                        <td>{{item.optionName}}</td>
+                        <td>{{item.fromDate | date:'dd-MM-YYYY'}}</td>
+                        <td>{{item.toDate | date:'dd-MM-YYYY'}}</td>
+                    </tr>
+
+                </tbody>
+            </nz-table>
+        </nz-card>
+        <ng-template #extraTemplate>
+            <a nz-button nzType="primary" href="" routerLink="/sell/shoping">
+                Mua thẻ tập
+            </a>
+        </ng-template>
+    </div>
+</div>
+<app-footer></app-footer>

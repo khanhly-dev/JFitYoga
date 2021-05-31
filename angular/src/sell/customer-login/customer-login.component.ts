@@ -43,7 +43,7 @@ export class CustomerLoginComponent implements OnInit {
     this.customerService.login(userName, password).subscribe(x => this.loginSuccess = x)
 
     setTimeout(() => {
-      if(this.loginSuccess)
+      if(this.loginSuccess == true)
       {
         location.href = '/sell/page';
         this.loginAccount = this.customerList.find(x => x.userName == userName && x.password == password)

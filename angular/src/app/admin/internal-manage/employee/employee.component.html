@@ -33,16 +33,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of table.data">
-                        <td>{{data.id}}</td>
-                        <td>{{data.name}}</td>
-                        <td>{{data.born | date:'dd-MM-YYYY'}}</td>
-                        <td>{{data.phoneNumber}}</td>
-                        <td>{{data.adress}}</td>
-                        <td>{{data.fromDate | date:'dd-MM-YYYY'}}</td>
-                        <td>{{data.positionId | positionPipe: positionList}}</td>
-                        <td>{{data.status | workStatusPipe  }}</td>
-                        <td>
+                    <tr *ngFor="let data of table.data" >
+                        <td *ngIf="data.id != 1">{{data.id}}</td>
+                        <td *ngIf="data.id != 1">{{data.name}}</td>
+                        <td *ngIf="data.id != 1">{{data.born | date:'dd-MM-YYYY'}}</td>
+                        <td *ngIf="data.id != 1">{{data.phoneNumber}}</td>
+                        <td *ngIf="data.id != 1">{{data.adress}}</td>
+                        <td *ngIf="data.id != 1">{{data.fromDate | date:'dd-MM-YYYY'}}</td>
+                        <td *ngIf="data.id != 1">{{data.positionId | positionPipe: positionList}}</td>
+                        <td *ngIf="data.id != 1">{{data.status | workStatusPipe  }}</td>
+                        <td *ngIf="data.id != 1">
                             <button *ngIf="data.id != 1" nz-button nzType="primary" (click)="showModal(data.id)">Sửa</button>
                             &nbsp;
                             <button *ngIf="data.id != 1" nz-button nzType="primary" (click)="deleteEmployee(data.id)">Xóa</button>
