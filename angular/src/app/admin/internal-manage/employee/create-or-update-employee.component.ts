@@ -55,10 +55,6 @@ export class CreateOrUpdateEmployeeComponent implements OnInit {
       this.createOrUpdateForm.controls[key].updateValueAndValidity();
     }
     this.saveEvent.emit();
-
-    console.log(value)
-    console.log(typeof(this.createOrUpdateForm.value.born))
-    console.log(typeof(this.createOrUpdateForm.value.fromDate))
     this.createOrUpdateEmployee(value)
   }
 
@@ -90,7 +86,6 @@ export class CreateOrUpdateEmployeeComponent implements OnInit {
     request.positionId = this.createOrUpdateForm.value.position 
     request.name = this.createOrUpdateForm.value.name
 
-    console.log(request.born)
     this.employeeService.createOrUpdateEmployee(request).subscribe();
   }
   //#endregion

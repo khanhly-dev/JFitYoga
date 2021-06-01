@@ -34,6 +34,9 @@ import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { CustomerUpdateComponent } from './customer-info/customer-update.component';
 
 
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
+
 @NgModule({
   declarations: [
     ShopingComponent,
@@ -72,7 +75,8 @@ import { CustomerUpdateComponent } from './customer-info/customer-update.compone
     NzCollapseModule,
     NzNotificationModule,
     SharedModule,
-    NzRadioModule
-  ]
+    NzRadioModule,
+    CarouselModule.forRoot(),
+  ],
 })
 export class SellModule { }

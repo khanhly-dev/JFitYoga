@@ -30,7 +30,7 @@ export class CreateOrUpdateBillComponent implements OnInit {
       customer: ['', [Validators.required]],
       userCreated: ['', [Validators.required]],
       originalPrice: ['',[Validators.required]],
-      Discout: ['',[Validators.required]],
+      discout: ['',[Validators.required]],
       totalPrice: ['', [Validators.required]],
       note: [''],
     });

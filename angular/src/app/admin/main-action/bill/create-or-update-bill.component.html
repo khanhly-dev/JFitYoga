@@ -2,14 +2,14 @@
 
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Tên:</nz-form-label>
+        <nz-form-label [nzSpan]="7" nzRequired>Mã:</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
-                <input nz-input formControlName="name"  [(ngModel)]="billBinding.name"/>
+                <input nz-input formControlName="name"  [(ngModel)]="billBinding.name" readonly/>
             </ng-template>
             <ng-template #elseBlock>
-                <input nz-input formControlName="name"  />
+                <input nz-input formControlName="name"  readonly/>
             </ng-template>
            
             <ng-template #userErrorTpl let-control>
@@ -25,12 +25,12 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Khách hàng:</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
-            <div *ngIf="billBinding != undefined; then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>
-                <input nz-input formControlName="name"  [(ngModel)]="billBinding.customerName"/>
+            <div *ngIf="billBinding != undefined; then thenBlock1 else elseBlock1"></div>
+            <ng-template #thenBlock1>
+                <input nz-input formControlName="customer"  [(ngModel)]="billBinding.customerName" readonly/>
             </ng-template>
-            <ng-template #elseBlock>
-                <input nz-input formControlName="name" />
+            <ng-template #elseBlock1>
+                <input nz-input formControlName="customer" readonly/>
             </ng-template>
            
             <ng-template #userErrorTpl let-control>
@@ -49,10 +49,10 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock2 else elseBlock2"></div>
             <ng-template #thenBlock2>
-                <input nz-input formControlName="adress" readonly   [(ngModel)]="billBinding.userCreated"/>
+                <input nz-input formControlName="userCreated"  [(ngModel)]="billBinding.userCreated"/>
             </ng-template>
             <ng-template #elseBlock2>
-                <input nz-input formControlName="adress" readonly />
+                <input nz-input formControlName="userCreated" />
             </ng-template>
           
         </nz-form-control>
@@ -64,10 +64,10 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock3 else elseBlock3"></div>
             <ng-template #thenBlock3>
-                <input nz-input formControlName="born" type="date"  [(ngModel)]="billBinding.originalPrice" />           
+                <input nz-input formControlName="originalPrice"  [(ngModel)]="billBinding.originalPrice"  readonly/>           
             </ng-template>
             <ng-template #elseBlock3>
-                <input nz-input formControlName="born" type="date" />   
+                <input nz-input formControlName="originalPrice"  readonly/>   
             </ng-template>
            
         </nz-form-control>
@@ -79,10 +79,10 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock4 else elseBlock4"></div>
             <ng-template #thenBlock4>
-                <input nz-input formControlName="userName"  [(ngModel)]="billBinding.discount"/>
+                <input nz-input formControlName="discout"  [(ngModel)]="billBinding.discount" readonly/>
             </ng-template>
             <ng-template #elseBlock4>
-                <input nz-input formControlName="userName"   />
+                <input nz-input formControlName="discout"   readonly/>
             </ng-template>
           
             <ng-template #userErrorTpl let-control>
@@ -101,10 +101,10 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock5 else elseBlock5"></div>
             <ng-template #thenBlock5>
-                <input nz-input formControlName="password" type="password"  [(ngModel)]="billBinding.totalPrice"/>
+                <input nz-input formControlName="totalPrice"  [(ngModel)]="billBinding.totalPrice" readonly/>
             </ng-template>
             <ng-template #elseBlock5>
-                <input nz-input formControlName="password" type="password"  />
+                <input nz-input formControlName="totalPrice"  readonly/>
             </ng-template>
             <ng-template #userErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
@@ -123,10 +123,10 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock6 else elseBlock6"></div>
             <ng-template #thenBlock6>
-                <input nz-input formControlName="email" type="email" [(ngModel)]="billBinding.note"/>
+                <input nz-input formControlName="note" [(ngModel)]="billBinding.note"/>
             </ng-template>
             <ng-template #elseBlock6>
-                <input nz-input formControlName="email" type="email"  />
+                <input nz-input formControlName="note"  />
             </ng-template>
            
         </nz-form-control>

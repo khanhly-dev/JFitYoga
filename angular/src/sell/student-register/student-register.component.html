@@ -63,31 +63,34 @@
                     </nz-collapse-panel>
                 </nz-collapse>
             </div>
-
-            <nz-table #table [nzData]="dayList">
+            <br>
+            <nz-table nzBordered #table class="table" [nzData]="dayList">
                 <thead>
-                    <tr>
-                        <th style="background-color: sandybrown;">Ca</th>
-                        <th style="text-align: center; background-color: sandybrown;" *ngFor="let item of dayList" #dayValue>{{item}}</th>
+                    <tr class="table-header">
+                        <th style="background-color:#db0c0c; color: white;">Ca</th>
+                        <th style="text-align: center; background-color: #db0c0c; color: white;" *ngFor="let item of dayList" #dayValue>{{item}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let data of sessionList">
                         
-                        <td>{{data.name}}</td>
+                        <td style="width: 80px; background-color: rgb(250, 227, 227)" >{{data.name}}</td>
 
                         <!--1 lich hoc-->
-                        <td *ngFor="let item of dayList">
-                            <div  style="padding-left: 30%;border: solid 1px;" *ngFor="let childItem of timeTableList" >
-                                <td style="text-align: center;" *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
-                                    <br> Bài: {{childItem.lesson}} 
-                                    <br> GV: {{childItem.employeeName}}
-                                    <br>
-                                    <button style="margin-top: 10%;" nz-button  nzSize="small" nzType="primary" (click)="addStudentIntoClass(childItem.id)">Đăng kí</button>
-                                    <button style="margin-top: 10%;" nz-button nzSize="small" nzType="primary" nzDanger (click)="cancelRegisterStudentInClass(childItem.id)">Hủy</button>
-                                    <hr>
-                                </td>
-                            </div>
+                        <td class="hover" *ngFor="let item of dayList">     
+                            <div class="content">
+                                <div  *ngFor="let childItem of timeTableList" >
+                                    <td   *ngIf="childItem.day == item && childItem.sessionId == data.id">Lớp: {{childItem.className}}
+                                        <br>Bài: {{childItem.lesson}}
+                                        <br>GV: {{childItem.employeeName}}
+                                        <br>
+                                        <button nz-button nzSize="small" nzType="primary" (click)="addStudentIntoClass(childItem.id)">Đăng kí</button>
+                                        <button nz-button nzSize="small" nzType="primary" nzDanger (click)="cancelRegisterStudentInClass(childItem.id)">Hủy</button>
+                                        <hr>
+                                    </td>
+                                </div>        
+                            </div>                 
+                                          
     </td>
     </tr>
 

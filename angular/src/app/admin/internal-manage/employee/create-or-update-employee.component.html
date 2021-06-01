@@ -25,7 +25,7 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="employeeBinding != undefined; then thenBlock1 else elseBlock1"></div>
             <ng-template #thenBlock1>
-                <input nz-input type="date" type="datetime" formControlName="born" [(ngModel)]="employeeBinding.born" />
+                <input nz-input type="date" formControlName="born" [(ngModel)]="employeeBinding.born" />
             </ng-template>
             <ng-template #elseBlock1>
                 <input nz-input type="date" formControlName="born" />
@@ -105,7 +105,7 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="employeeBinding != undefined; then thenBlock4 else elseBlock4"></div>
             <ng-template #thenBlock4>
-                <input nz-input type="date" type="datetime" formControlName="fromDate" [(ngModel)]="employeeBinding.fromDate" />
+                <input nz-input type="date" formControlName="fromDate" [(ngModel)]="employeeBinding.fromDate" />
             </ng-template>
             <ng-template #elseBlock4>
                 <input nz-input type="date" formControlName="fromDate" />
@@ -127,10 +127,10 @@
             <ng-template #thenBlock5>
                 <nz-select style="width: 100%;" nzShowSearch [(ngModel)]="employeeBinding.status"
                     formControlName="status">
-                    <nz-option nzLabel="Đang làm việc" [nzValue]="1">
+                    <nz-option nzLabel="Đang làm việc" [nzValue]="true">
                     </nz-option>
 
-                    <nz-option nzLabel="Đã nghỉ việc" [nzValue]="0">
+                    <nz-option nzLabel="Đã nghỉ việc" [nzValue]="false">
                     </nz-option>
                 </nz-select>
             </ng-template>

@@ -46,11 +46,10 @@
               "src/assets/freeze-ui/freeze-ui.css",
               "node_modules/admin-lte-css-only/css/adminlte.min.css",
               "src/shared/core.less",
-              "src/style.css"
+              "src/style.css",
+              "./node_modules/sweetalert2/dist/sweetalert2.css"
 
-
-        
-            
+      
             ],
             "scripts": [
               "node_modules/moment/min/moment.min.js",
