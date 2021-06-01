@@ -23,6 +23,7 @@ import { en_US, vi_VN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 registerLocaleData(vi);
 
 export function getCurrentLanguage(): string {
@@ -44,6 +45,7 @@ export function getCurrentLanguage(): string {
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     TabsModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
     ServiceProxyModule,
     RootRoutingModule,
     FormsModule,

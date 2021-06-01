@@ -45,6 +45,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzListModule } from 'ng-zorro-antd/list';
 
+import { ChartsModule, WavesModule, ButtonsModule, CardsModule } from 'angular-bootstrap-md';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +76,6 @@ import { NzListModule } from 'ng-zorro-antd/list';
     SidebarLogoComponent,
     SidebarUserPanelComponent,
     SidebarMenuComponent,
-
   ],
   imports: [
     CommonModule,
@@ -95,7 +97,10 @@ import { NzListModule } from 'ng-zorro-antd/list';
     NzButtonModule,
     NzTableModule,
     NzListModule,
-   
+    ChartsModule,
+    WavesModule,
+    ButtonsModule,
+    CardsModule
   ],
   providers: [
     
