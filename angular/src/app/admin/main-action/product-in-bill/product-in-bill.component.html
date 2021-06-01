@@ -12,12 +12,10 @@
                 <br>
                 <!-- search -->
                 <div nz-row [nzGutter]="16">
-                    <div nz-col class="gutter-row" [nzSpan]="2">
-                        <p style="font-size: 20px;">Tìm kiếm:</p>
-                    </div>
+                   
                     <div nz-col class="gutter-row" [nzSpan]="10">
                         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-                            <input type="text" nz-input placeholder="Tên..." #search/>
+                            <input type="text" nz-input placeholder="Từ khóa..." #search/>
                         </nz-input-group>
                         <ng-template #suffixIconButton>
                             <button nz-button nzType="primary" nzSearch (click)="getAllProductInBill(search.value)">
@@ -28,6 +26,7 @@
                     </div>
                    
                 </div>
+                <br>
                 <div>
                     <nz-table nzTemplateMode #billManageTable [nzData]="productInBillList">
                         <thead>

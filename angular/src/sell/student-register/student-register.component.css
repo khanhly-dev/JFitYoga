@@ -22,11 +22,11 @@
 }
 
 .hover:hover .content{
-	top: -8px;
-	left: -8px;
+	top: -5px;
+	left: -5px;
 	transition: 0.4s;
     z-index: 2;
-    box-shadow: 0 0 30px 10px;
+    box-shadow: 0 0 30px 5px;
     background-color: rgb(255, 248, 248)
 }
 .table

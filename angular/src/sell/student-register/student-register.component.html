@@ -64,7 +64,7 @@
                 </nz-collapse>
             </div>
             <br>
-            <nz-table nzBordered #table class="table" [nzData]="dayList">
+            <nz-table #table class="table" [nzData]="dayList">
                 <thead>
                     <tr class="table-header">
                         <th style="background-color:#db0c0c; color: white;">Ca</th>
@@ -84,8 +84,8 @@
                                         <br>Bài: {{childItem.lesson}}
                                         <br>GV: {{childItem.employeeName}}
                                         <br>
-                                        <button nz-button nzSize="small" nzType="primary" (click)="addStudentIntoClass(childItem.id)">Đăng kí</button>
-                                        <button nz-button nzSize="small" nzType="primary" nzDanger (click)="cancelRegisterStudentInClass(childItem.id)">Hủy</button>
+                                        <button nz-button nzSize="small" nzType="text" style="color: #187bcd;" (click)="addStudentIntoClass(childItem.id)">Đăng kí</button>
+                                        <button nz-button nzSize="small" nzType="text" nzDanger (click)="cancelRegisterStudentInClass(childItem.id)">Hủy</button>
                                         <hr>
                                     </td>
                                 </div>        
