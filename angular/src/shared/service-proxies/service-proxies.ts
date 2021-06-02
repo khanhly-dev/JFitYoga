@@ -155,7 +155,7 @@ export class BillServiceProxy {
      * @param body (optional) 
      * @return Success
      */
-    createOrUpdateBill(body: CreateOrUpdateBillRequest | undefined): Observable<number> {
+     createOrUpdateBill(body: CreateOrUpdateBillRequest | undefined): Observable<number> {
         let url_ = this.baseUrl + "/api/services/app/Bill/CreateOrUpdateBill";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5084,6 +5084,8 @@ export class CreateOrUpdateBillRequest implements ICreateOrUpdateBillRequest {
     id: number | undefined;
     customerId: number;
     name: string | undefined;
+    userCreated: string | undefined;
+    dateCreated: moment.Moment;
     originalPrice: number;
     discount: number;
     totalPrice: number;
@@ -5103,6 +5105,8 @@ export class CreateOrUpdateBillRequest implements ICreateOrUpdateBillRequest {
             this.id = _data["id"];
             this.customerId = _data["customerId"];
             this.name = _data["name"];
+            this.userCreated = _data["userCreated"];
+            this.dateCreated = _data["dateCreated"] ? moment(_data["dateCreated"].toString()) : <any>undefined;
             this.originalPrice = _data["originalPrice"];
             this.discount = _data["discount"];
             this.totalPrice = _data["totalPrice"];
@@ -5122,18 +5126,13 @@ export class CreateOrUpdateBillRequest implements ICreateOrUpdateBillRequest {
         data["id"] = this.id;
         data["customerId"] = this.customerId;
         data["name"] = this.name;
+        data["userCreated"] = this.userCreated;
+        data["dateCreated"] = this.dateCreated ? this.dateCreated.toISOString() : <any>undefined;
         data["originalPrice"] = this.originalPrice;
         data["discount"] = this.discount;
         data["totalPrice"] = this.totalPrice;
         data["note"] = this.note;
         return data; 
-    }
-
-    clone(): CreateOrUpdateBillRequest {
-        const json = this.toJSON();
-        let result = new CreateOrUpdateBillRequest();
-        result.init(json);
-        return result;
     }
 }
 
@@ -5141,11 +5140,14 @@ export interface ICreateOrUpdateBillRequest {
     id: number | undefined;
     customerId: number;
     name: string | undefined;
+    userCreated: string | undefined;
+    dateCreated: moment.Moment;
     originalPrice: number;
     discount: number;
     totalPrice: number;
     note: string | undefined;
 }
+
 
 export class BillViewModel implements IBillViewModel {
     id: number | undefined;

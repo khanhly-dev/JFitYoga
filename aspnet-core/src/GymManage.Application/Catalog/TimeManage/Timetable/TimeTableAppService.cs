@@ -134,7 +134,7 @@ namespace GymManage.Catalog.TimeManage.Timetable
                         join e in employeeQuery on t.employeeId equals e.Id
                         select new { t, s, c, e };
 
-            query = query.Where(x => x.t.Date == date && dateToCompare.Hour < x.s.FromTime.Hour);
+            query = query.Where(x => x.t.Date == date && dateToCompare.Hour < x.s.ToTime.Hour);
 
 
             var data = await query.Select(x => new TimeTableViewModel
