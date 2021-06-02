@@ -56,7 +56,7 @@
 
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
     (nzOnCancel)="handleCancel()">
-    <ng-template #modalTitle>Thêm/sửa mới sản phẩm</ng-template>
+    <ng-template #modalTitle>Thêm/sửa mới Phân loại lớp học</ng-template>
 
     <ng-template #modalContent>
         <app-create-or-update-training-class-category (closeEvent)="handleCancel()" (saveEvent)="handleOk()" [classCategoryBinding]="classCategoryListFilter"></app-create-or-update-training-class-category>

@@ -54,7 +54,7 @@
 
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
     (nzOnCancel)="handleCancel()">
-    <ng-template #modalTitle>Thêm/sửa sản phẩm</ng-template>
+    <ng-template #modalTitle>Thêm/sửa Bộ môn</ng-template>
 
     <ng-template #modalContent>
         <app-create-or-update-product (closeEvent)="handleCancel()" (saveEvent)="handleOk()" [productBinding]="productListFilter"></app-create-or-update-product>
