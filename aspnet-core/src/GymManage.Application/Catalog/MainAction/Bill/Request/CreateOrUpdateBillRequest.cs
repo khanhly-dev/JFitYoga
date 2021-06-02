@@ -11,6 +11,8 @@ namespace GymManage.Catalog.MainAction.Bill.Request
         public int? Id { get; set; }
         public int CustomerId { get; set; }
         public string Name { get; set; }
+        public string UserCreated { get; set; }
+        public DateTime DateCreated { get; set; }
         public float OriginalPrice { get; set; }
         public float Discount { get; set; }
         public float TotalPrice { get; set; }

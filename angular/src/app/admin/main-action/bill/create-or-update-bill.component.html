@@ -27,10 +27,10 @@
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <div *ngIf="billBinding != undefined; then thenBlock1 else elseBlock1"></div>
             <ng-template #thenBlock1>
-                <input nz-input formControlName="customer"  [(ngModel)]="billBinding.customerName" readonly/>
+                <input nz-input formControlName="customerId"  [(ngModel)]="billBinding.customerId" readonly/>
             </ng-template>
             <ng-template #elseBlock1>
-                <input nz-input formControlName="customer" readonly/>
+                <input nz-input formControlName="customerId" readonly/>
             </ng-template>
            
             <ng-template #userErrorTpl let-control>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { BillServiceProxy, BillViewModel, CreateOrUpdateBillRequest } from '@shared/service-proxies/service-proxies';
+import * as moment from 'moment';
 import * as moment1 from 'moment';
 import { Observable, Observer } from 'rxjs';
 
@@ -27,8 +28,9 @@ export class CreateOrUpdateBillComponent implements OnInit {
   constructor(private fb: FormBuilder, private billService: BillServiceProxy) {
     this.createOrUpdateForm = this.fb.group({
       name: ['', [Validators.required]],
-      customer: ['', [Validators.required]],
+      customerId: ['', [Validators.required]],
       userCreated: ['', [Validators.required]],
+      dateCreated: [moment()],
       originalPrice: ['',[Validators.required]],
       discout: ['',[Validators.required]],
       totalPrice: ['', [Validators.required]],
@@ -80,8 +82,8 @@ export class CreateOrUpdateBillComponent implements OnInit {
     if (this.billBinding != undefined) {
       request.id = this.billBinding.id
     }
-    request.name = this.createOrUpdateForm.value.name;
-   
+    
+   console.log(request)
 
     this.billService.createOrUpdateBill(request).subscribe();
   }

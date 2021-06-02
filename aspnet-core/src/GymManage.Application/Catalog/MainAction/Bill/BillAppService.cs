@@ -38,8 +38,7 @@ namespace GymManage.Catalog.MainAction.Bill
             var data = new BillEntity
             {
                 Name = request.Name,
-                DateCreated = DateTime.Now,
-                UserCreated = userName,
+               
                 OriginalPrice = request.OriginalPrice,
                 Discount = request.Discount,
                 TotalPrice = request.TotalPrice,
@@ -49,12 +48,16 @@ namespace GymManage.Catalog.MainAction.Bill
 
             if (request.Id > 0)
             {
+                data.DateCreated = request.DateCreated;
+                data.UserCreated = request.UserCreated;
                 data.Id = request.Id.Value;
                 await _billRepos.UpdateAsync(data);
                 return data.Id;
             }
             else
             {
+                data.DateCreated = DateTime.Now;
+                data.UserCreated = userName;
                 return await _billRepos.InsertAndGetIdAsync(data);
             }
 

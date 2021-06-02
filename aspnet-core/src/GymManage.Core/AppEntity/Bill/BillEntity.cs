@@ -19,9 +19,8 @@ namespace GymManage.Bill
 
         [Column("Ten")]
         public string Name { get; set; }    
-        private DateTime dateCreated;
         [Column("NgayTao")]
-        public DateTime DateCreated { get { return dateCreated; } set { dateCreated = DateTime.Now; } }
+        public DateTime DateCreated { get; set; }
         [Column("NguoiTao")]
         public string UserCreated { get; set; }
         [Column("TongTien")]
