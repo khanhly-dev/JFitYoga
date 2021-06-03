@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { CreateOrUpdateCustomerInTimeTableRequest, CustomerInTImeTableServiceProxy, CustomerInTimeTableViewModel, CustomerServiceProxy, CustomerViewModel, ProductInBillServiceProxy, ProductInBillViewModel, TimeTableServiceProxy, TimeTableViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
@@ -28,6 +29,7 @@ export class CheckInComponent implements OnInit {
     this.getAllCustomer('');
     this.getTimeTableByDate();
     this.getAllStudent();
+    console.log('danh sach card là', this.productInBillListFilter)
   }
 
   getAllStudent() {
@@ -112,6 +114,10 @@ export class CheckInComponent implements OnInit {
       request.timeTableId = classId;
       this.customerInClassService.createOrUpdateCustomerInTimeTable(request).subscribe();
       alert('Đã check in vào lớp học thành công')
+    }
+    else if(this.productInBillListFilter.length == 0)
+    {
+      alert('Khách hàng này chưa mua thẻ hoặc thẻ đã hết hạn')
     }
     else if(dataChecked == undefined)
     {

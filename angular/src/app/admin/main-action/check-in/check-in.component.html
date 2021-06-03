@@ -100,7 +100,8 @@
                                 <td>{{item.sessionName}}</td>
                                 <td>{{item.date | date: 'dd-MM-YYYY'}}</td>
                                 <td>
-                                    <button nz-button nzType="primary" (click)="insertCustomerIntoClass(customerSelect.value,item.id)">Check in</button> <br><br>
+                                    <button nz-button nzType="primary" (click)="insertCustomerIntoClass(customerSelect.value,item.id)">Check in</button>                                    
+                                    <br><br>
                                     <button nz-button nzType="primary" (click)="showModal(item.id)">Chi tiết</button>
                                 </td>
                             </tr>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateOrUpdateCustomerInTimeTableRequest, CustomerInTImeTableServiceProxy, CustomerInTimeTableViewModel, EmployeeServiceProxy, EmployeeViewModel, SessionWorkServiceProxy, SessionWorkViewModel, TimeTableServiceProxy, TimeTableViewModel, TrainingClassServiceProxy, TrainingClassViewModel } from '@shared/service-proxies/service-proxies';
+import { CreateOrUpdateCustomerInTimeTableRequest, CustomerInTImeTableServiceProxy, CustomerInTimeTableViewModel, EmployeeServiceProxy, EmployeeViewModel, ProductInBillServiceProxy, ProductInBillViewModel, SessionWorkServiceProxy, SessionWorkViewModel, TimeTableServiceProxy, TimeTableViewModel, TrainingClassServiceProxy, TrainingClassViewModel } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
 
 @Component({
@@ -11,13 +11,15 @@ export class StudentRegisterComponent implements OnInit {
 
   collapse = 'Bộ lọc';
 
-  centerVar : string = 'center';
+  centerVar: string = 'center';
 
   sessionList: SessionWorkViewModel[] = [];
   employeeList: EmployeeViewModel[] = [];
   teacherList: EmployeeViewModel[] = [];
   classList: TrainingClassViewModel[] = [];
   cusInClassList: CustomerInTimeTableViewModel[] = []
+  productInBillList: ProductInBillViewModel[] = [];
+  productInBillListFilter: ProductInBillViewModel[] = [];
 
   timeTableList: TimeTableViewModel[] = [];
   timeTableByDayList: TimeTableViewModel[] = [];
@@ -30,6 +32,7 @@ export class StudentRegisterComponent implements OnInit {
     private sessionService: SessionWorkServiceProxy,
     private employeeService: EmployeeServiceProxy,
     private classService: TrainingClassServiceProxy,
+    private productInBillService: ProductInBillServiceProxy,
     private studentService: CustomerInTImeTableServiceProxy
   ) { }
 
@@ -40,6 +43,7 @@ export class StudentRegisterComponent implements OnInit {
     this.getAllClass('');
     this.getTeacher(1)
     this.getAllCustomerInClass('')
+    this.getProductInBillByCustomerId(Number(sessionStorage.getItem('loginAcountId')))
   }
   //#endregion
 
@@ -78,6 +82,15 @@ export class StudentRegisterComponent implements OnInit {
     this.timeTableService.getAllTimeTable(keyword, fromDateConvert, toDateConvert).subscribe(x => this.timeTableList = x);
   }
 
+  getProductInBillByCustomerId(customerId: number) {
+    this.productInBillService.getProductInBillByCustomerId(customerId).subscribe(x => this.productInBillList = x)
+    setTimeout(() => {
+      this.productInBillListFilter = this.productInBillList.filter(x => x.toDate.isAfter(moment()) == true)
+      console.log(this.productInBillListFilter)
+    }, 500);
+
+  }
+
   getTimeTableById(classId?: number, employeeId?: number, sessionId?: number) {
     this.timeTableService.getTimeTableById(classId, employeeId, sessionId).subscribe(x => this.timeTableList = x);
   }
@@ -93,41 +106,43 @@ export class StudentRegisterComponent implements OnInit {
     request.active = false;
 
     var dataChecked: CustomerInTimeTableViewModel[]
-    dataChecked = this.cusInClassList.filter(x => x.customerId == Number(sessionStorage.getItem('loginAcountId')) 
-    && x.timeTableId == timeTableId);
+    dataChecked = this.cusInClassList.filter(x => x.customerId == Number(sessionStorage.getItem('loginAcountId'))
+      && x.timeTableId == timeTableId);
     if (dataChecked.length > 0) {
       alert('Bạn đã đăng kí vào lớp này rồi')
     }
+
     else {
-      if (sessionStorage.getItem('loginAcountId') != undefined) {
+      if (sessionStorage.getItem('loginAcountId') != undefined && this.productInBillListFilter.length != 0) {
         request.customerId = Number(sessionStorage.getItem('loginAcountId'));
         this.studentService.createOrUpdateCustomerInTimeTable(request).subscribe();
         alert('Đăng kí thành công')
         location.reload();
       }
-      else {
+      else if (sessionStorage.getItem('loginAcountId') == undefined) {
         alert('Bạn phải đăng nhập để có thể đăng kí học')
+      }
+      else if(sessionStorage.getItem('loginAcountId') != undefined && this.productInBillListFilter.length == 0)
+      {
+        alert('Bạn chưa đăng kí mua thẻ hoặc thẻ đã hết hạn')
       }
     }
   }
 
-  cancelRegisterStudentInClass(timeTableId: number)
-  {
+  cancelRegisterStudentInClass(timeTableId: number) {
     var dataChecked: CustomerInTimeTableViewModel
-    dataChecked = this.cusInClassList.find(x => x.customerId == Number(sessionStorage.getItem('loginAcountId')) 
-    && x.timeTableId == timeTableId);
+    dataChecked = this.cusInClassList.find(x => x.customerId == Number(sessionStorage.getItem('loginAcountId'))
+      && x.timeTableId == timeTableId);
 
-    if(dataChecked != undefined)
-    {
+    if (dataChecked != undefined) {
       this.studentService.deleteCustomeInTimeTable(dataChecked.id).subscribe();
       alert('Hủy thành công')
       location.reload();
     }
-    else
-    {
+    else {
       alert('Bạn chưa đăng kí vào lớp này')
     }
-    
+
   }
 
 }
