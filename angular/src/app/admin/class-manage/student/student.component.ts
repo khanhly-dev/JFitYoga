@@ -4,9 +4,12 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'app-student',
-  templateUrl: './student.component.html',
+  templateUrl: './student.component.html'
 })
 export class StudentComponent implements OnInit {
+
+  
+color: string= 'red';
 
   totalStudent : number;
   collapse = 'Bộ lọc';
